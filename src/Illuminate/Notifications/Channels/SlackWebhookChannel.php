@@ -84,6 +84,7 @@ class SlackWebhookChannel
                 'text' => $attachment->content,
                 'title_link' => $attachment->url,
                 'fields' => $this->fields($attachment),
+                'mrkdwn_in' => $attachment->markdown,
             ]);
         })->all();
     }
