@@ -190,8 +190,8 @@ class SlackAttachment
     /**
      * Add a field to the attachment.
      *
-     * @param  \Closure|string $title
-     * @param  string $content
+     * @param  \Closure|string  $title
+     * @param  string  $content
      * @return $this
      */
     public function field($title, $content = '')
@@ -296,7 +296,7 @@ class SlackAttachment
     /**
      * Set the footer icon.
      *
-     * @param  string $icon
+     * @param  string  $icon
      * @return $this
      */
     public function footerIcon($icon)
