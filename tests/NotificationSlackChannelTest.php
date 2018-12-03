@@ -15,12 +15,12 @@ use Illuminate\Notifications\Channels\SlackWebhookChannel;
 class NotificationSlackChannelTest extends TestCase
 {
     /**
-     * @var SlackWebhookChannel
+     * @var \Illuminate\Notifications\Channels\SlackWebhookChannel
      */
     private $slackChannel;
 
     /**
-     * @var MockInterface|\GuzzleHttp\Client
+     * @var \Mockery\MockInterface|\GuzzleHttp\Client
      */
     private $guzzleHttp;
 
@@ -40,7 +40,7 @@ class NotificationSlackChannelTest extends TestCase
 
     /**
      * @dataProvider payloadDataProvider
-     * @param Notification $notification
+     * @param \Illuminate\Notifications\Notification $notification
      * @param array $payload
      */
     public function testCorrectPayloadIsSentToSlack(Notification $notification, array $payload)
