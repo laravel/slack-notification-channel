@@ -7,28 +7,35 @@ use Closure;
 class SlackMessage
 {
     /**
-     * The "level" of the notification (info, success, error).
+     * The "level" of the notification (info, success, warning, error).
      *
      * @var string
      */
     public $level = 'info';
 
     /**
-     * Webhook username.
+     * The username to send the message from.
      *
      * @var string|null
      */
     public $username;
 
     /**
-     * Webhook icon emoji.
+     * The user emoji icon for the message.
      *
      * @var string|null
      */
-    public $icon_emoji;
+    public $icon;
 
     /**
-     * Channel override.
+     * The user image icon for the message.
+     *
+     * @var string|null
+     */
+    public $image;
+
+    /**
+     * The channel to send the message on.
      *
      * @var string|null
      */
@@ -42,11 +49,51 @@ class SlackMessage
     public $content;
 
     /**
+     * Indicates if channel names and usernames should be linked.
+     *
+     * @var bool
+     */
+    public $linkNames = 0;
+
+    /**
+     * Indicates if you want a preview of links inlined in the message.
+     *
+     * @var bool
+     */
+    public $unfurlLinks;
+
+    /**
+     * Indicates if you want a preview of links to media inlined in the message.
+     *
+     * @var bool
+     */
+    public $unfurlMedia;
+
+    /**
      * The message's attachments.
      *
      * @var array
      */
     public $attachments = [];
+
+    /**
+     * Additional request options for the Guzzle HTTP client.
+     *
+     * @var array
+     */
+    public $http = [];
+
+    /**
+     * Indicate that the notification gives information about an operation.
+     *
+     * @return $this
+     */
+    public function info()
+    {
+        $this->level = 'info';
+
+        return $this;
+    }
 
     /**
      * Indicate that the notification gives information about a successful operation.
@@ -56,6 +103,18 @@ class SlackMessage
     public function success()
     {
         $this->level = 'success';
+
+        return $this;
+    }
+
+    /**
+     * Indicate that the notification gives information about a warning.
+     *
+     * @return $this
+     */
+    public function warning()
+    {
+        $this->level = 'warning';
 
         return $this;
     }
@@ -73,9 +132,9 @@ class SlackMessage
     }
 
     /**
-     * Set a custom username and emoji icon for the Slack message.
+     * Set a custom username and optional emoji icon for the Slack message.
      *
-     * @param  string       $username
+     * @param  string  $username
      * @param  string|null  $icon
      * @return $this
      */
@@ -84,16 +143,29 @@ class SlackMessage
         $this->username = $username;
 
         if (! is_null($icon)) {
-            $this->icon_emoji = $icon;
+            $this->icon = $icon;
         }
 
         return $this;
     }
 
     /**
-     * Set which channel the Slack message should be posted in.
+     * Set a custom image icon the message should use.
      *
-     * @param  string $channel
+     * @param  string  $image
+     * @return $this
+     */
+    public function image($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Set the Slack channel the message should be sent to.
+     *
+     * @param  string  $channel
      * @return $this
      */
     public function to($channel)
@@ -140,9 +212,62 @@ class SlackMessage
     {
         switch ($this->level) {
             case 'success':
-                return '#7CD197';
+                return 'good';
             case 'error':
-                return '#F35A00';
+                return 'danger';
+            case 'warning':
+                return 'warning';
         }
+    }
+
+    /**
+     * Find and link channel names and usernames.
+     *
+     * @return $this
+     */
+    public function linkNames()
+    {
+        $this->linkNames = 1;
+
+        return $this;
+    }
+
+    /**
+     * Find and link channel names and usernames.
+     *
+     * @param  string  $unfurl
+     * @return $this
+     */
+    public function unfurlLinks($unfurl)
+    {
+        $this->unfurlLinks = $unfurl;
+
+        return $this;
+    }
+
+    /**
+     * Find and link channel names and usernames.
+     *
+     * @param  string  $unfurl
+     * @return $this
+     */
+    public function unfurlMedia($unfurl)
+    {
+        $this->unfurlMedia = $unfurl;
+
+        return $this;
+    }
+
+    /**
+     * Set additional request options for the Guzzle HTTP client.
+     *
+     * @param  array  $options
+     * @return $this
+     */
+    public function http(array $options)
+    {
+        $this->http = $options;
+
+        return $this;
     }
 }
