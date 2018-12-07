@@ -273,10 +273,9 @@ class SlackAttachment
     /**
      * Add an action (button) under the attachment.
      *
-     * @param string $title
-     * @param string $url
-     * @param string $style
-     *
+     * @param  string  $title
+     * @param  string  $url
+     * @param  string  $style
      * @return $this
      */
     public function action($title, $url, $style = '')
