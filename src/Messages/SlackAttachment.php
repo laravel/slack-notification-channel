@@ -275,15 +275,17 @@ class SlackAttachment
      *
      * @param string $title
      * @param string $url
+     * @param string $style
      *
      * @return $this
      */
-    public function action($title, $url)
+    public function action($title, $url, $style = '')
     {
         $this->actions[] = [
             'type' => 'button',
             'text' => $title,
             'url' => $url,
+            'style' => $style,
         ];
 
         return $this;
