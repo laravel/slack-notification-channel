@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\Notification;
 class SlackChannelServiceProvider extends ServiceProvider
 {
     /**
-     * Register the service provider.
+     * Boot the service provider.
      *
      * @return void
      */
-    public function register()
+    public function boot()
     {
         Notification::extend('slack', function ($app) {
             return new Channels\SlackWebhookChannel(new HttpClient);
