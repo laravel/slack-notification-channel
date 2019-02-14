@@ -79,6 +79,13 @@ class SlackAttachment
     public $thumbUrl;
 
     /**
+     * The attachment's actions.
+     *
+     * @var array
+     */
+    public $actions = [];
+
+    /**
      * The attachment author's name.
      *
      * @var string
@@ -259,6 +266,26 @@ class SlackAttachment
     public function thumb($url)
     {
         $this->thumbUrl = $url;
+
+        return $this;
+    }
+
+    /**
+     * Add an action (button) under the attachment.
+     *
+     * @param  string  $title
+     * @param  string  $url
+     * @param  string  $style
+     * @return $this
+     */
+    public function action($title, $url, $style = '')
+    {
+        $this->actions[] = [
+            'type' => 'button',
+            'text' => $title,
+            'url' => $url,
+            'style' => $style,
+        ];
 
         return $this;
     }
