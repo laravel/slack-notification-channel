@@ -2,6 +2,7 @@
 
 namespace Illuminate\Notifications\Messages;
 
+use Closure;
 use Illuminate\Support\InteractsWithTime;
 
 class SlackAttachment
@@ -56,6 +57,11 @@ class SlackAttachment
      * @var array
      */
     public $fields;
+
+    /**
+     * The attachment's blocks.
+     */
+    public $blocks;
 
     /**
      * The fields containing markdown.
@@ -227,6 +233,21 @@ class SlackAttachment
     public function fields(array $fields)
     {
         $this->fields = $fields;
+
+        return $this;
+    }
+
+    /**
+     * Add a block to the attachment.
+     *
+     * @param  \Closure  $callback
+     * @return $this
+     */
+    public function block(Closure $callback)
+    {
+        $this->blocks[] = $block = new SlackAttachmentBlock;
+
+        $callback($block);
 
         return $this;
     }
