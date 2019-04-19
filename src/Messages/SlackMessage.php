@@ -233,7 +233,7 @@ class SlackMessage
     }
 
     /**
-     * Find and link channel names and usernames.
+     * Unfurl links to rich display.
      *
      * @param  string  $unfurl
      * @return $this
@@ -246,7 +246,7 @@ class SlackMessage
     }
 
     /**
-     * Find and link channel names and usernames.
+     * Unfurl media to rich display.
      *
      * @param  string  $unfurl
      * @return $this
