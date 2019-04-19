@@ -4,7 +4,6 @@ namespace Illuminate\Tests\Notifications;
 
 use Mockery as m;
 use GuzzleHttp\Client;
-use Mockery\MockInterface;
 use Illuminate\Support\Carbon;
 use PHPUnit\Framework\TestCase;
 use Illuminate\Notifications\Notifiable;
