@@ -1,5 +1,8 @@
 # Release Notes
 
+## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v2.0.0...2.0)
+
+
 ## [v2.0.0 (2019-02-26)](https://github.com/laravel/slack-notification-channel/compare/v1.0.3...v2.0.0)
 
 ### Added
