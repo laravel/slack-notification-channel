@@ -37,22 +37,32 @@ class SlackWebhookChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        if (! $url = $notifiable->routeNotificationFor('slack', $notification)) {
+        if (! $route = $notifiable->routeNotificationFor('slack', $notification)) {
             return;
         }
 
+        if (substr($route, 0, 4 ) === 'xoxp') {
+            $url = 'https://slack.com/api/chat.postMessage';
+            $token = $route;
+        } else {
+            $url = $route;
+            $token = null;
+        }
+
         return $this->http->post($url, $this->buildJsonPayload(
-            $notification->toSlack($notifiable)
+            $notification->toSlack($notifiable),
+            $token
         ));
     }
 
     /**
      * Build up a JSON payload for the Slack webhook.
      *
+     * @param  string  $token
      * @param  \Illuminate\Notifications\Messages\SlackMessage  $message
      * @return array
      */
-    protected function buildJsonPayload(SlackMessage $message)
+    protected function buildJsonPayload(SlackMessage $message, string $token=null)
     {
         $optionalFields = array_filter([
             'channel' => data_get($message, 'channel'),
@@ -64,12 +74,22 @@ class SlackWebhookChannel
             'username' => data_get($message, 'username'),
         ]);
 
-        return array_merge([
+        $payload = [
             'json' => array_merge([
                 'text' => $message->content,
                 'attachments' => $this->attachments($message),
             ], $optionalFields),
-        ], $message->http);
+        ];
+
+
+        if ($token) {
+            $payload['headers'] = [
+                'Content-type' => 'application/json',
+                'Authorization' => 'Bearer '.$token,
+            ];
+        }
+
+        return array_merge($payload, $message->http);
     }
 
     /**

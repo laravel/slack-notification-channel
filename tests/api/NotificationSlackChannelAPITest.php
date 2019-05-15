@@ -1,6 +1,6 @@
 <?php
 
-namespace Illuminate\Tests\Notifications;
+namespace Illuminate\Tests\Notifications\Api;
 
 use Mockery as m;
 use GuzzleHttp\Client;
@@ -11,7 +11,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Channels\SlackWebhookChannel;
 
-class NotificationSlackChannelTest extends TestCase
+class NotificationSlackChannelAPITest extends TestCase
 {
     /**
      * @var \Illuminate\Notifications\Channels\SlackWebhookChannel
@@ -45,7 +45,7 @@ class NotificationSlackChannelTest extends TestCase
     public function testCorrectPayloadIsSentToSlack(Notification $notification, array $payload)
     {
         $this->guzzleHttp->shouldReceive('post')->andReturnUsing(function ($argUrl, $argPayload) use ($payload) {
-            $this->assertEquals($argUrl, 'url');
+            $this->assertEquals($argUrl, 'https://slack.com/api/chat.postMessage');
             $this->assertEquals($argPayload, $payload);
         });
 
@@ -67,6 +67,10 @@ class NotificationSlackChannelTest extends TestCase
         return [
             new NotificationSlackChannelTestNotification,
             [
+                'headers' => [
+                    'Content-type' => 'application/json',
+                    'Authorization' => 'Bearer xoxp-token',
+                ],
                 'json' => [
                     'username' => 'Ghostbot',
                     'icon_emoji' => ':ghost:',
@@ -104,6 +108,10 @@ class NotificationSlackChannelTest extends TestCase
         return [
             new NotificationSlackChannelTestNotificationWithImageIcon,
             [
+                'headers' => [
+                    'Content-type' => 'application/json',
+                    'Authorization' => 'Bearer xoxp-token',
+                ],
                 'json' => [
                     'username' => 'Ghostbot',
                     'icon_url' => 'http://example.com/image.png',
@@ -138,6 +146,10 @@ class NotificationSlackChannelTest extends TestCase
         return [
             new NotificationSlackChannelWithoutOptionalFieldsTestNotification,
             [
+                'headers' => [
+                    'Content-type' => 'application/json',
+                    'Authorization' => 'Bearer xoxp-token',
+                ],
                 'json' => [
                     'text' => 'Content',
                     'attachments' => [
@@ -164,6 +176,10 @@ class NotificationSlackChannelTest extends TestCase
         return [
             new NotificationSlackChannelWithAttachmentFieldBuilderTestNotification,
             [
+                'headers' => [
+                    'Content-type' => 'application/json',
+                    'Authorization' => 'Bearer xoxp-token',
+                ],
                 'json' => [
                     'text' => 'Content',
                     'attachments' => [
@@ -197,7 +213,7 @@ class NotificationSlackChannelTestNotifiable
 
     public function routeNotificationForSlack()
     {
-        return 'url';
+        return 'xoxp-token';
     }
 }
 
