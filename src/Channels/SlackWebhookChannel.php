@@ -16,6 +16,7 @@ class SlackWebhookChannel
      * @var \GuzzleHttp\Client
      */
     protected $http;
+    protected $token;
 
     /**
      * Create a new Slack channel instance.
@@ -26,6 +27,7 @@ class SlackWebhookChannel
     public function __construct(HttpClient $http)
     {
         $this->http = $http;
+        $this->token = null;
     }
 
     /**
@@ -43,26 +45,23 @@ class SlackWebhookChannel
 
         if (substr($route, 0, 4 ) === 'xoxp') {
             $url = 'https://slack.com/api/chat.postMessage';
-            $token = $route;
+            $this->token = $route;
         } else {
             $url = $route;
-            $token = null;
         }
 
         return $this->http->post($url, $this->buildJsonPayload(
-            $notification->toSlack($notifiable),
-            $token
+            $notification->toSlack($notifiable)
         ));
     }
 
     /**
      * Build up a JSON payload for the Slack webhook.
      *
-     * @param  string  $token
      * @param  \Illuminate\Notifications\Messages\SlackMessage  $message
      * @return array
      */
-    protected function buildJsonPayload(SlackMessage $message, string $token=null)
+    protected function buildJsonPayload(SlackMessage $message)
     {
         $optionalFields = array_filter([
             'channel' => data_get($message, 'channel'),
@@ -82,10 +81,10 @@ class SlackWebhookChannel
         ];
 
 
-        if ($token) {
+        if ($this->token) {
             $payload['headers'] = [
                 'Content-type' => 'application/json',
-                'Authorization' => 'Bearer '.$token,
+                'Authorization' => 'Bearer '.$this->token,
             ];
         }
 
