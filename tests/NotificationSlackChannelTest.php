@@ -23,7 +23,7 @@ class NotificationSlackChannelTest extends TestCase
      */
     private $guzzleHttp;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -32,7 +32,7 @@ class NotificationSlackChannelTest extends TestCase
         $this->slackChannel = new SlackWebhookChannel($this->guzzleHttp);
     }
 
-    public function tearDown()
+    protected function tearDown(): void
     {
         m::close();
     }
