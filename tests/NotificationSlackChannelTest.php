@@ -2,14 +2,14 @@
 
 namespace Illuminate\Tests\Notifications;
 
-use Mockery as m;
 use GuzzleHttp\Client;
-use Illuminate\Support\Carbon;
-use PHPUnit\Framework\TestCase;
+use Illuminate\Notifications\Channels\SlackWebhookChannel;
+use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
-use Illuminate\Notifications\Messages\SlackMessage;
-use Illuminate\Notifications\Channels\SlackWebhookChannel;
+use Illuminate\Support\Carbon;
+use Mockery as m;
+use PHPUnit\Framework\TestCase;
 
 class NotificationSlackChannelTest extends TestCase
 {
