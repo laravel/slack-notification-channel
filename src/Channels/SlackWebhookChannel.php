@@ -52,7 +52,7 @@ class SlackWebhookChannel
      * @param  \Illuminate\Notifications\Messages\SlackMessage  $message
      * @return array
      */
-    protected function buildJsonPayload(SlackMessage $message)
+    public function buildJsonPayload(SlackMessage $message)
     {
         $optionalFields = array_filter([
             'channel' => data_get($message, 'channel'),
