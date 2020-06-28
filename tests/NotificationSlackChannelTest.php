@@ -3,6 +3,7 @@
 namespace Illuminate\Tests\Notifications;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Notifications\Channels\SlackWebhookChannel;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Notifiable;
@@ -47,6 +48,8 @@ class NotificationSlackChannelTest extends TestCase
         $this->guzzleHttp->shouldReceive('post')->andReturnUsing(function ($argUrl, $argPayload) use ($payload) {
             $this->assertEquals($argUrl, 'url');
             $this->assertEquals($argPayload, $payload);
+
+            return new Response();
         });
 
         $this->slackChannel->send(new NotificationSlackChannelTestNotifiable, $notification);
