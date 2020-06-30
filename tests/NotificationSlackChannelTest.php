@@ -48,6 +48,7 @@ class NotificationSlackChannelTest extends TestCase
         $this->guzzleHttp->shouldReceive('post')->andReturnUsing(function ($argUrl, $argPayload) use ($payload) {
             $this->assertEquals($argUrl, 'url');
             $this->assertEquals($argPayload, $payload);
+
             return new Response();
         });
 
