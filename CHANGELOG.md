@@ -3,6 +3,12 @@
 ## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v2.0.2...master)
 
 
+## [v2.1.0 (2020-06-30)](https://github.com/laravel/slack-notification-channel/compare/v2.0.2...v2.1.0)
+
+### Added
+- Guzzle 7 support ([#36](https://github.com/laravel/slack-notification-channel/pull/36))
+
+
 ## [v2.0.2 (2019-08-27)](https://github.com/laravel/slack-notification-channel/compare/v2.0.1...v2.0.2)
 
 ### Changed
