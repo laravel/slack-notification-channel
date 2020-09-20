@@ -4,8 +4,8 @@ namespace Illuminate\Tests\Notifications;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
-use Illuminate\Notifications\Channels\SlackWebhookChannel;
-use Illuminate\Notifications\Messages\SlackMessage;
+use Illuminate\Notifications\Channels\SlackChannel;
+use Illuminate\Notifications\Messages\Slack\SlackMessage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Carbon;
