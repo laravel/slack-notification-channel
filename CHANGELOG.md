@@ -2,6 +2,8 @@
 
 ## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v2.2.0...2.0)
 
+### Added
+- PHP 8.0 support ([#45](https://github.com/laravel/slack-notification-channel/pull/45))
 
 ## [v2.2.0 (2020-08-25)](https://github.com/laravel/slack-notification-channel/compare/v2.1.0...v2.2.0)
 
