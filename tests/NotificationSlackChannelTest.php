@@ -174,6 +174,7 @@ class NotificationSlackChannelTest extends TestCase
                             'title' => 'Laravel',
                             'text' => 'Attachment Content',
                             'title_link' => 'https://laravel.com',
+                            'callback_id' => 'attachment_callbackid',
                             'fields' => [
                                 [
                                     'title' => 'Project',
@@ -282,6 +283,7 @@ class NotificationSlackChannelWithAttachmentFieldBuilderTestNotification extends
                 $attachment->title('Laravel', 'https://laravel.com')
                     ->content('Attachment Content')
                     ->field('Project', 'Laravel')
+                    ->callbackId('attachment_callbackid')
                     ->field(function ($attachmentField) {
                         $attachmentField
                             ->title('Special powers')

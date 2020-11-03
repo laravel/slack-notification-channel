@@ -1,6 +1,13 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v2.2.0...master)
+## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v2.3.0...master)
+
+
+## [v2.3.0 (2020-11-03)](https://github.com/laravel/slack-notification-channel/compare/v2.2.0...v2.3.0)
+
+### Added
+- PHP 8.0 support ([#45](https://github.com/laravel/slack-notification-channel/pull/45))
+- Add callback id for attachments ([#43](https://github.com/laravel/slack-notification-channel/pull/43))
 
 
 ## [v2.2.0 (2020-08-25)](https://github.com/laravel/slack-notification-channel/compare/v2.1.0...v2.2.0)
