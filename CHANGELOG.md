@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v2.3.0...master)
+## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v2.3.1...master)
+
+
+## [v2.3.1 (2021-01-26)](https://github.com/laravel/slack-notification-channel/compare/v2.3.0...v2.3.1)
+
+### Fixed
+- Clarify `timestamp` method ([#47](https://github.com/laravel/slack-notification-channel/pull/47))
 
 
 ## [v2.3.0 (2020-11-03)](https://github.com/laravel/slack-notification-channel/compare/v2.2.0...v2.3.0)
