@@ -341,7 +341,7 @@ class SlackAttachment
     }
 
     /**
-     * Set the timestamp by the number of seconds (or DateInterval) starting from now or a specific DateTime moment.
+     * Set the timestamp a DateTimeInterface, DateInterval, or the number of seconds that should be added to the current time.
      *
      * @param  \DateTimeInterface|\DateInterval|int  $timestamp
      * @return $this
