@@ -341,14 +341,14 @@ class SlackAttachment
     }
 
     /**
-     * Set the timestamp by passing a DateTime or a DateInterval instance, or a given number of seconds to delay.
+     * Set the timestamp by the number of seconds (or DateInterval) starting from now or a specific DateTime moment.
      *
-     * @param  \DateTimeInterface|\DateInterval|int  $delay
+     * @param  \DateTimeInterface|\DateInterval|int  $timestamp
      * @return $this
      */
-    public function timestamp($delay)
+    public function timestamp($timestamp)
     {
-        $this->timestamp = $this->availableAt($delay);
+        $this->timestamp = $this->availableAt($timestamp);
 
         return $this;
     }
