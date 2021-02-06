@@ -235,7 +235,7 @@ class SlackMessage
     /**
      * Unfurl links to rich display.
      *
-     * @param  string  $unfurl
+     * @param  bool  $unfurl
      * @return $this
      */
     public function unfurlLinks($unfurl)
@@ -248,7 +248,7 @@ class SlackMessage
     /**
      * Unfurl media to rich display.
      *
-     * @param  string  $unfurl
+     * @param  bool  $unfurl
      * @return $this
      */
     public function unfurlMedia($unfurl)
