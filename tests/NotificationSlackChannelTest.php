@@ -40,8 +40,9 @@ class NotificationSlackChannelTest extends TestCase
 
     /**
      * @dataProvider payloadDataProvider
-     * @param \Illuminate\Notifications\Notification $notification
-     * @param array $payload
+     *
+     * @param  \Illuminate\Notifications\Notification  $notification
+     * @param  array  $payload
      */
     public function testCorrectPayloadIsSentToSlack(Notification $notification, array $payload)
     {
