@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v2.3.1...2.0)
+## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v2.4.0...2.0)
+
+
+## [v2.4.0 (2022-01-12)](https://github.com/laravel/slack-notification-channel/compare/v2.3.1...v2.4.0)
+
+### Changed
+- Laravel 9 Support ([#53](https://github.com/laravel/slack-notification-channel/pull/53))
 
 
 ## [v2.3.1 (2021-01-26)](https://github.com/laravel/slack-notification-channel/compare/v2.3.0...v2.3.1)
