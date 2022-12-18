@@ -230,7 +230,7 @@ class SlackMessage
      */
     public function color()
     {
-        if(is_null($this->color)) {
+        if (is_null($this->color)) {
             switch ($this->level) {
                 case 'success':
                     return 'good';
