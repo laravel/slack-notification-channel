@@ -41,6 +41,10 @@ class SlackWebhookChannel
             return;
         }
 
+        if (in_array(parse_url($url)['host'], ['discord.com', 'ptb.discord.com', 'canary.discord.com']) && !(substr_compare($url, '/slack', -6) === 0)) {
+            $url .= '/slack';
+        }
+
         return $this->http->post($url, $this->buildJsonPayload(
             $notification->toSlack($notifiable)
         ));
