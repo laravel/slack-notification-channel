@@ -14,6 +14,13 @@ class SlackMessage
     public $level = 'info';
 
     /**
+     * The custom color to set the embed sidebar to.
+     *
+     * @var string
+     */
+    public $color = null;
+
+    /**
      * The username to send the message from.
      *
      * @var string|null
@@ -132,6 +139,19 @@ class SlackMessage
     }
 
     /**
+     * Set a custom custom embed sidebar color for the Slack message.
+     *
+     * @param  string  color
+     * @return $this
+     */
+    public function customColor($color)
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    /**
      * Set a custom username and optional emoji icon for the Slack message.
      *
      * @param  string  $username
@@ -210,14 +230,18 @@ class SlackMessage
      */
     public function color()
     {
-        switch ($this->level) {
-            case 'success':
-                return 'good';
-            case 'error':
-                return 'danger';
-            case 'warning':
-                return 'warning';
+        if(is_null($this->color)) {
+            switch ($this->level) {
+                case 'success':
+                    return 'good';
+                case 'error':
+                    return 'danger';
+                case 'warning':
+                    return 'warning';
+            }
         }
+
+        return $this->color;
     }
 
     /**
