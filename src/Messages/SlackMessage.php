@@ -132,19 +132,6 @@ class SlackMessage
     }
 
     /**
-     * Set a custom custom embed sidebar color for the Slack message.
-     *
-     * @param  string  color
-     * @return $this
-     */
-    public function customColor($color)
-    {
-        $this->color = $color;
-
-        return $this;
-    }
-
-    /**
      * Set a custom username and optional emoji icon for the Slack message.
      *
      * @param  string  $username
