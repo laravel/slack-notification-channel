@@ -210,14 +210,12 @@ class SlackMessage
      */
     public function color()
     {
-        switch ($this->level) {
-            case 'success':
-                return 'good';
-            case 'error':
-                return 'danger';
-            case 'warning':
-                return 'warning';
-        }
+        return match ($this->level) {
+            'success'   => 'good',
+            'error'     => 'danger',
+            'warning'   => 'warning',
+            default     => null
+        };
     }
 
     /**
