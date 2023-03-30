@@ -28,9 +28,9 @@ class EventMetadata implements Arrayable
     /**
      * Fluently create a new event metadata instance.
      */
-    public static function make(string $type, array $payload = []): static
+    public static function make(string $type, array $payload = []): self
     {
-        return new static($type, $payload);
+        return new self($type, $payload);
     }
 
     /**

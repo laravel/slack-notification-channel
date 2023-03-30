@@ -32,6 +32,6 @@ class SlackRoute
      */
     public static function make(string $channel = null, string $token = null): self
     {
-        return new static($channel, $token);
+        return new self($channel, $token);
     }
 }
