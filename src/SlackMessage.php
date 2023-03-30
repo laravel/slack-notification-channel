@@ -11,6 +11,7 @@ use Illuminate\Notifications\Slack\BlockKit\Blocks\HeaderBlock;
 use Illuminate\Notifications\Slack\BlockKit\Blocks\ImageBlock;
 use Illuminate\Notifications\Slack\BlockKit\Blocks\SectionBlock;
 use Illuminate\Notifications\Slack\Contracts\BlockContract;
+use Illuminate\Support\Arr;
 use LogicException;
 
 class SlackMessage implements Arrayable
@@ -294,5 +295,17 @@ class SlackMessage implements Arrayable
         return array_merge([
             'channel' => $this->channel,
         ], $optionalFields);
+    }
+
+    /**
+     * Dump the payload as a URL to the Slack Block Kit Builder.
+     */
+    public function dd(bool $raw = false): never
+    {
+        if ($raw) {
+            dd($this->toArray());
+        }
+
+        dd('https://app.slack.com/block-kit-builder#'.rawurlencode(json_encode(Arr::except($this->toArray(), ['username', 'text', 'channel']), true)));
     }
 }
