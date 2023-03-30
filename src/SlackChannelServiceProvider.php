@@ -1,8 +1,9 @@
 <?php
 
-namespace Illuminate\Notifications;
+namespace Illuminate\Notifications\Slack;
 
-use GuzzleHttp\Client as HttpClient;
+use Illuminate\Http\Client\Factory as HttpFactory;
+use Illuminate\Notifications\ChannelManager;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\ServiceProvider;
 
@@ -10,14 +11,12 @@ class SlackChannelServiceProvider extends ServiceProvider
 {
     /**
      * Register the service provider.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
         Notification::resolved(function (ChannelManager $service) {
             $service->extend('slack', function ($app) {
-                return new Channels\SlackWebhookChannel($app->make(HttpClient::class));
+                return new SlackChannel($app[HttpFactory::class]);
             });
         });
     }
