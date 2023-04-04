@@ -18,10 +18,10 @@ class SlackNotificationRouterChannelTest extends TestCase
     public function it_routes_the_notification_to_the_webhook_channel_when_the_notifiable_route_is_a_string_url(): void
     {
         $app = new Container();
-        $app->bind(SlackWebhookChannel::class, fn () => new FakeWebhookChannel(function ($notifiable, $notification) {
+        $app->bind(SlackWebhookChannel::class, fn () => new FakeSlackChannel(function ($notifiable, $notification) {
             $this->assertEquals('http://example.com', $notifiable->routeNotificationFor('slack', $notification));
         }));
-        $app->bind(SlackWebApiChannel::class, fn () => new FakeWebhookChannel(function () {
+        $app->bind(SlackWebApiChannel::class, fn () => new FakeSlackChannel(function () {
             $this->fail('The Slack WebAPI Channel should not have been called.');
         }));
 
@@ -34,10 +34,10 @@ class SlackNotificationRouterChannelTest extends TestCase
     public function it_routes_the_notification_to_the_webhook_channel_when_the_notifiable_route_is_a_psr_url_instance(): void
     {
         $app = new Container();
-        $app->bind(SlackWebhookChannel::class, fn () => new FakeWebhookChannel(function ($notifiable, $notification) {
+        $app->bind(SlackWebhookChannel::class, fn () => new FakeSlackChannel(function ($notifiable, $notification) {
             $this->assertInstanceOf(Uri::class, $notifiable->routeNotificationFor('slack', $notification));
         }));
-        $app->bind(SlackWebApiChannel::class, fn () => new FakeWebhookChannel(function () {
+        $app->bind(SlackWebApiChannel::class, fn () => new FakeSlackChannel(function () {
             $this->fail('The Slack WebAPI Channel should not have been called.');
         }));
 
@@ -50,10 +50,10 @@ class SlackNotificationRouterChannelTest extends TestCase
     public function it_routes_the_notification_to_the_web_api_channel_when_the_notifiable_route_is_not_an_url(): void
     {
         $app = new Container();
-        $app->bind(SlackWebhookChannel::class, fn () => new FakeWebhookChannel(function () {
+        $app->bind(SlackWebhookChannel::class, fn () => new FakeSlackChannel(function () {
             $this->fail('The Slack Webhook Channel should not have been called.');
         }));
-        $app->bind(SlackWebApiChannel::class, fn () => new FakeWebhookChannel(function ($notifiable, $notification) {
+        $app->bind(SlackWebApiChannel::class, fn () => new FakeSlackChannel(function ($notifiable, $notification) {
             $this->assertEquals('#general', $notifiable->routeNotificationFor('slack', $notification));
         }));
 
@@ -63,7 +63,7 @@ class SlackNotificationRouterChannelTest extends TestCase
     }
 }
 
-class FakeWebhookChannel
+class FakeSlackChannel
 {
     protected $callback;
 
