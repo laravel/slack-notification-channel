@@ -8,6 +8,7 @@ use Illuminate\Notifications\Slack\SlackRoute;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Tests\Notifications\Slack\SlackChannelTestNotifiable;
+use Illuminate\Tests\Notifications\Slack\SlackChannelTestNotification;
 use Illuminate\Tests\Notifications\Slack\TestCase;
 
 class SlackChannelTest extends TestCase
@@ -19,7 +20,7 @@ class SlackChannelTest extends TestCase
 
         $this->slackChannel->send(
             new SlackChannelTestNotifiable('example-channel'),
-            $this->buildNotification(function (SlackMessage $message) {
+            new SlackChannelTestNotification(function (SlackMessage $message) {
                 $message->text('Content')->to('ignored-channel');
             })
         );
@@ -44,7 +45,7 @@ class SlackChannelTest extends TestCase
 
         $this->slackChannel->send(
             new SlackChannelTestNotifiable(SlackRoute::make('route-set-channel')),
-            $this->buildNotification(function (SlackMessage $message) {
+            new SlackChannelTestNotification(function (SlackMessage $message) {
                 $message->text('Content');
             })
         );
@@ -69,7 +70,7 @@ class SlackChannelTest extends TestCase
 
         $this->slackChannel->send(
             new SlackChannelTestNotifiable(SlackRoute::make('route-set-channel', 'route-set-token')),
-            $this->buildNotification(function (SlackMessage $message) {
+            new SlackChannelTestNotification(function (SlackMessage $message) {
                 $message->text('Content');
             })
         );
@@ -94,7 +95,7 @@ class SlackChannelTest extends TestCase
 
         $this->slackChannel->send(
             new SlackChannelTestNotifiable(SlackRoute::make(null, 'route-set-token')),
-            $this->buildNotification(function (SlackMessage $message) {
+            new SlackChannelTestNotification(function (SlackMessage $message) {
                 $message->text('Content')->to('notification-channel');
             })
         );
@@ -120,7 +121,7 @@ class SlackChannelTest extends TestCase
 
         $this->slackChannel->send(
             new SlackChannelTestNotifiable(),
-            $this->buildNotification(function (SlackMessage $message) {
+            new SlackChannelTestNotification(function (SlackMessage $message) {
                 $message->text('Content');
             })
         );
@@ -146,7 +147,7 @@ class SlackChannelTest extends TestCase
 
         $this->slackChannel->send(
             new SlackChannelTestNotifiable(),
-            $this->buildNotification(function (SlackMessage $message) {
+            new SlackChannelTestNotification(function (SlackMessage $message) {
                 $message->text('Content')->to('notification-channel');
             })
         );
@@ -171,7 +172,7 @@ class SlackChannelTest extends TestCase
 
         $this->slackChannel->send(
             new SlackChannelTestNotifiable(),
-            $this->buildNotification(function (SlackMessage $message) {
+            new SlackChannelTestNotification(function (SlackMessage $message) {
                 $message->text('Content');
             })
         );
@@ -184,7 +185,7 @@ class SlackChannelTest extends TestCase
     {
         $this->slackChannel->send(
             new SlackChannelTestNotifiable(SlackRoute::make('laravel-channel')),
-            $this->buildNotification(function (SlackMessage $message) {
+            new SlackChannelTestNotification(function (SlackMessage $message) {
                 $message->text('Content');
             })
         );

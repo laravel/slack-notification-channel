@@ -2,11 +2,8 @@
 
 namespace Illuminate\Tests\Notifications\Slack;
 
-use Closure;
-use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Slack\SlackChannel;
-use Illuminate\Notifications\Slack\SlackChannelServiceProvider;
-use Illuminate\Notifications\Slack\SlackMessage;
+use Illuminate\Notifications\SlackChannelServiceProvider;
 use Illuminate\Support\Facades\Http;
 
 class TestCase extends \Orchestra\Testbench\TestCase
@@ -38,23 +35,5 @@ class TestCase extends \Orchestra\Testbench\TestCase
 
         $this->http = Http::fake();
         $this->slackChannel = new SlackChannel($this->http);
-    }
-
-    protected function buildNotification(Closure $callback): Notification
-    {
-        return new class($callback) extends Notification
-        {
-            private Closure $callback;
-
-            public function __construct(Closure $callback)
-            {
-                $this->callback = $callback;
-            }
-
-            public function toSlack($notifiable)
-            {
-                return tap(new SlackMessage(), $this->callback);
-            }
-        };
     }
 }

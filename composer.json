@@ -24,12 +24,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Illuminate\\Notifications\\Slack\\": "src/"
+            "Illuminate\\Notifications\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Illuminate\\Tests\\Notifications\\Slack\\": "tests/"
+            "Illuminate\\Tests\\Notifications\\": "tests/"
         }
     },
     "config": {
@@ -37,11 +37,11 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "3.x-dev"
+            "dev-master": "2.x-dev"
         },
         "laravel": {
             "providers": [
-                "Illuminate\\Notifications\\Slack\\SlackChannelServiceProvider"
+                "Illuminate\\Notifications\\SlackChannelServiceProvider"
             ]
         }
     },

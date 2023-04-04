@@ -12,6 +12,7 @@ use Illuminate\Notifications\Slack\SlackMessage;
 use Illuminate\Notifications\Slack\SlackRoute;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Tests\Notifications\Slack\SlackChannelTestNotifiable;
+use Illuminate\Tests\Notifications\Slack\SlackChannelTestNotification;
 use Illuminate\Tests\Notifications\Slack\TestCase;
 use LogicException;
 
@@ -21,7 +22,7 @@ class SlackMessageTest extends TestCase
     {
         $this->slackChannel->send(
             new SlackChannelTestNotifiable(new SlackRoute($routeChannel, 'fake-token')),
-            $this->buildNotification($callback)
+            new SlackChannelTestNotification($callback)
         );
 
         return $this;
