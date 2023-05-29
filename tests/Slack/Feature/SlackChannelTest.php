@@ -166,9 +166,12 @@ class SlackChannelTest extends TestCase
     }
 
     /** @test */
-    public function it_does_not_send_the_notification_when_the_route_notification_for_slack_method_does_not_provide_a_channel_and_the_notification_and_config_do_not_either(): void
+    public function it_throws_an_exception_when_the_route_notification_for_slack_method_does_not_provide_a_channel_and_the_notification_and_config_do_not_either(): void
     {
         Config::set('services.slack.notifications.bot_user_oauth_token', 'config-set-token');
+
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage('Slack notification channel is not set.');
 
         $this->slackChannel->send(
             new SlackChannelTestNotifiable(),
@@ -176,20 +179,19 @@ class SlackChannelTest extends TestCase
                 $message->text('Content');
             })
         );
-
-        Http::assertNothingSent();
     }
 
     /** @test */
-    public function it_does_not_send_the_notification_when_the_route_notification_for_slack_method_does_not_provide_a_token_and_the_config_does_not_either(): void
+    public function it_throws_an_exception_when_the_route_notification_for_slack_method_does_not_provide_a_token_and_the_config_does_not_either(): void
     {
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage('Slack API authentication token is not set.');
+
         $this->slackChannel->send(
             new SlackChannelTestNotifiable(SlackRoute::make('laravel-channel')),
             new SlackChannelTestNotification(function (SlackMessage $message) {
                 $message->text('Content');
             })
         );
-
-        Http::assertNothingSent();
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Client\Factory;
 use Illuminate\Http\Client\Response;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Config;
+use LogicException;
 use RuntimeException;
 
 class SlackChannel
@@ -36,8 +37,12 @@ class SlackChannel
 
         $payload = $this->buildJsonPayload($message, $route);
 
-        if (! $route->token || ! $payload['channel']) {
-            return null;
+        if (! $payload['channel']) {
+            throw new LogicException('Slack notification channel is not set.');
+        }
+
+        if (! $route->token) {
+            throw new LogicException('Slack API authentication token is not set.');
         }
 
         $response = $this->http->asJson()
