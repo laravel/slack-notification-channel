@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Tests\Notifications\Slack\SlackChannelTestNotifiable;
 use Illuminate\Tests\Notifications\Slack\SlackChannelTestNotification;
 use Illuminate\Tests\Notifications\Slack\TestCase;
+use LogicException;
 
 class SlackChannelTest extends TestCase
 {
@@ -170,7 +171,7 @@ class SlackChannelTest extends TestCase
     {
         Config::set('services.slack.notifications.bot_user_oauth_token', 'config-set-token');
 
-        $this->expectException(\LogicException::class);
+        $this->expectException(LogicException::class);
         $this->expectExceptionMessage('Slack notification channel is not set.');
 
         $this->slackChannel->send(
@@ -184,7 +185,7 @@ class SlackChannelTest extends TestCase
     /** @test */
     public function it_throws_an_exception_when_the_route_notification_for_slack_method_does_not_provide_a_token_and_the_config_does_not_either(): void
     {
-        $this->expectException(\LogicException::class);
+        $this->expectException(LogicException::class);
         $this->expectExceptionMessage('Slack API authentication token is not set.');
 
         $this->slackChannel->send(
