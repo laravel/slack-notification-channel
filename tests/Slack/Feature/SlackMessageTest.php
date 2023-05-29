@@ -3,11 +3,13 @@
 namespace Illuminate\Tests\Notifications\Slack\Feature;
 
 use Closure;
+use Illuminate\Http\Client\Factory;
 use Illuminate\Http\Client\Request;
 use Illuminate\Notifications\Slack\BlockKit\Blocks\ActionsBlock;
 use Illuminate\Notifications\Slack\BlockKit\Blocks\ContextBlock;
 use Illuminate\Notifications\Slack\BlockKit\Blocks\ImageBlock;
 use Illuminate\Notifications\Slack\BlockKit\Blocks\SectionBlock;
+use Illuminate\Notifications\Slack\SlackChannel;
 use Illuminate\Notifications\Slack\SlackMessage;
 use Illuminate\Notifications\Slack\SlackRoute;
 use Illuminate\Support\Facades\Http;
@@ -15,6 +17,7 @@ use Illuminate\Tests\Notifications\Slack\SlackChannelTestNotifiable;
 use Illuminate\Tests\Notifications\Slack\SlackChannelTestNotification;
 use Illuminate\Tests\Notifications\Slack\TestCase;
 use LogicException;
+use RuntimeException;
 
 class SlackMessageTest extends TestCase
 {
@@ -73,6 +76,22 @@ class SlackMessageTest extends TestCase
             'channel' => '#ghost-talk',
             'text' => 'This is a simple Web API text message. See https://api.slack.com/reference/messaging/payload for more information.',
         ]);
+    }
+
+    /** @test */
+    public function it_fails_to_send_a_message_when_the_slack_app_is_not_configured_correctly(): void
+    {
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Slack API call failed with error [invalid_auth].');
+
+        $channel = new SlackChannel(new Factory());
+
+        $channel->send(
+            new SlackChannelTestNotifiable(new SlackRoute('#general', 'invalid-token')),
+            new SlackChannelTestNotification(function (SlackMessage $message) {
+                $message->text('This is a simple Web API text message. See https://api.slack.com/reference/messaging/payload for more information.');
+            })
+        );
     }
 
     /** @test */

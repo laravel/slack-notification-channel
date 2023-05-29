@@ -6,6 +6,7 @@ use Illuminate\Http\Client\Factory;
 use Illuminate\Http\Client\Response;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Config;
+use RuntimeException;
 
 class SlackChannel
 {
@@ -39,9 +40,16 @@ class SlackChannel
             return null;
         }
 
-        return $this->http->asJson()
+        $response = $this->http->asJson()
             ->withToken($route->token)
-            ->post('https://slack.com/api/chat.postMessage', $payload);
+            ->post('https://slack.com/api/chat.postMessage', $payload)
+            ->throw();
+
+        if ($response->successful() && $response->json('ok') === false) {
+            throw new RuntimeException('Slack API call failed with error ['.$response->json('error').'].');
+        }
+
+        return $response;
     }
 
     /**
