@@ -28,8 +28,6 @@ class ImageElement implements ElementContract
 
     /**
      * Set the alt text for the image.
-     *
-     * @return $this
      */
     public function alt(string $altText): self
     {

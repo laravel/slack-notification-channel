@@ -34,7 +34,7 @@ class SectionBlock implements BlockContract
      * that allows for 2 columns of side-by-side text. Maximum number of items
      * is 10. Maximum length for the text in each item is 2000 characters.
      *
-     * @var \Illuminate\Contracts\Support\Arrayable[]
+     * @var \Illuminate\Notifications\Slack\BlockKit\Composites\TextObject[]
      */
     protected array $fields = [];
 
@@ -45,8 +45,6 @@ class SectionBlock implements BlockContract
 
     /**
      * Set the block identifier.
-     *
-     * @return $this
      */
     public function id(string $id): self
     {
@@ -77,8 +75,6 @@ class SectionBlock implements BlockContract
 
     /**
      * Set the accessory for the block.
-     *
-     * @return $this
      */
     public function accessory(ElementContract $element): self
     {

@@ -51,8 +51,6 @@ class ImageBlock implements BlockContract
 
     /**
      * Set the block identifier.
-     *
-     * @return $this
      */
     public function id(string $id): self
     {
@@ -63,8 +61,6 @@ class ImageBlock implements BlockContract
 
     /**
      * Set the alt text for the image.
-     *
-     * @return $this
      */
     public function alt(string $altText): self
     {

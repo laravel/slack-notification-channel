@@ -35,8 +35,6 @@ class PlainTextOnlyTextObject implements ObjectContract
 
     /**
      * Indicate that emojis should be escaped into the colon emoji format.
-     *
-     * @return $this
      */
     public function emoji(): self
     {

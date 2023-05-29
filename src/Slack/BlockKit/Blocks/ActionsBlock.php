@@ -22,14 +22,12 @@ class ActionsBlock implements BlockContract
      * An array of interactive element objects - buttons, select menus, overflow menus, or date pickers.
      * There is a maximum of 25 elements in each action block.
      *
-     * @var \Illuminate\Contracts\Support\Arrayable[]
+     * @var \Illuminate\Notifications\Slack\Contracts\ElementContract[]
      */
     protected array $elements = [];
 
     /**
      * Set the block identifier.
-     *
-     * @return $this
      */
     public function id(string $id): self
     {

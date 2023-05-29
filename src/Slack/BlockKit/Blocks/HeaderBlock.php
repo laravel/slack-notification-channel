@@ -37,8 +37,6 @@ class HeaderBlock implements BlockContract
 
     /**
      * Set the block identifier.
-     *
-     * @return $this
      */
     public function id(string $id): self
     {

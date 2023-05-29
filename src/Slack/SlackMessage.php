@@ -29,7 +29,7 @@ class SlackMessage implements Arrayable
     /**
      * The message's blocks.
      *
-     * @var array<\Illuminate\Notifications\Slack\Contracts\BlockContract>
+     * @var \Illuminate\Notifications\Slack\Contracts\BlockContract[]
      */
     protected array $blocks = [];
 
@@ -45,8 +45,6 @@ class SlackMessage implements Arrayable
 
     /**
      * The JSON metadata for the message.
-     *
-     * @var \Illuminate\Notifications\Slack\EventMetadata|null
      */
     protected ?EventMetadata $metaData = null;
 
@@ -72,8 +70,6 @@ class SlackMessage implements Arrayable
 
     /**
      * Set the Slack channel the message should be sent to.
-     *
-     * @return $this
      */
     public function to(string $channel): self
     {
@@ -84,8 +80,6 @@ class SlackMessage implements Arrayable
 
     /**
      * Set the fallback & notification text of the Slack message.
-     *
-     * @return $this
      */
     public function text(string $text): self
     {
@@ -96,8 +90,6 @@ class SlackMessage implements Arrayable
 
     /**
      * Add a new Actions block to the message.
-     *
-     * @return $this
      */
     public function actionsBlock(Closure $callback): self
     {
@@ -110,8 +102,6 @@ class SlackMessage implements Arrayable
 
     /**
      * Add a new Context block to the message.
-     *
-     * @return $this
      */
     public function contextBlock(Closure $callback): self
     {
@@ -124,8 +114,6 @@ class SlackMessage implements Arrayable
 
     /**
      * Add a new Divider block to the message.
-     *
-     * @return $this
      */
     public function dividerBlock(): self
     {
@@ -136,8 +124,6 @@ class SlackMessage implements Arrayable
 
     /**
      * Add a new Actions block to the message.
-     *
-     * @return $this
      */
     public function headerBlock(string $text, Closure $callback = null): self
     {
@@ -148,10 +134,8 @@ class SlackMessage implements Arrayable
 
     /**
      * Add a new Image block to the message.
-     *
-     * @return $this
      */
-    public function imageBlock(string $url, $altText = null, Closure $callback = null): self
+    public function imageBlock(string $url, Closure|string $altText = null, Closure $callback = null): self
     {
         if ($altText instanceof Closure) {
             $callback = $altText;
@@ -169,8 +153,6 @@ class SlackMessage implements Arrayable
 
     /**
      * Add a new Section block to the message.
-     *
-     * @return $this
      */
     public function sectionBlock(Closure $callback): self
     {
@@ -183,8 +165,6 @@ class SlackMessage implements Arrayable
 
     /**
      * Set a custom image icon the message should use.
-     *
-     * @return $this
      */
     public function emoji(string $emoji): self
     {
@@ -196,8 +176,6 @@ class SlackMessage implements Arrayable
 
     /**
      * Set a custom image icon the message should use.
-     *
-     * @return $this
      */
     public function image(string $image): self
     {
@@ -209,8 +187,6 @@ class SlackMessage implements Arrayable
 
     /**
      * Set the metadata the message should include.
-     *
-     * @return $this
      */
     public function metadata(string $eventType, array $payload = []): self
     {
@@ -221,8 +197,6 @@ class SlackMessage implements Arrayable
 
     /**
      * Disable Slack's markup parsing.
-     *
-     * @return $this
      */
     public function disableMarkdownParsing(): self
     {
@@ -233,8 +207,6 @@ class SlackMessage implements Arrayable
 
     /**
      * Unfurl links to rich display.
-     *
-     * @return $this
      */
     public function unfurlLinks(): self
     {
@@ -245,8 +217,6 @@ class SlackMessage implements Arrayable
 
     /**
      * Unfurl media to rich display.
-     *
-     * @return $this
      */
     public function unfurlMedia(): self
     {
@@ -257,8 +227,6 @@ class SlackMessage implements Arrayable
 
     /**
      * Sets the user name for the Slack bot.
-     *
-     * @return $this
      */
     public function username(string $username): self
     {
@@ -299,8 +267,10 @@ class SlackMessage implements Arrayable
 
     /**
      * Dump the payload as a URL to the Slack Block Kit Builder.
+     *
+     * @return void
      */
-    public function dd(bool $raw = false): never
+    public function dd(bool $raw = false)
     {
         if ($raw) {
             dd($this->toArray());

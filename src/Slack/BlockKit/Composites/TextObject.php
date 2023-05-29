@@ -19,9 +19,7 @@ class TextObject extends PlainTextOnlyTextObject
     protected ?bool $verbatim = null;
 
     /**
-     * Create a new text object instance.
-     *
-     * @return $this
+     * Changes the formatting of this text object to mrkdwn.
      */
     public function markdown(): self
     {
@@ -33,8 +31,6 @@ class TextObject extends PlainTextOnlyTextObject
     /**
      * Indicate that URLs, conversation names and certain mentions should not be auto-linked.
      * Only applicable for mrkdwn text objects.
-     *
-     * @return $this
      */
     public function verbatim(): self
     {

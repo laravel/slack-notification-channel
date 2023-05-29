@@ -86,8 +86,6 @@ class ButtonElement implements ElementContract
 
     /**
      * Set the URL for the button.
-     *
-     * @return $this
      */
     public function url(string $url): self
     {
@@ -102,8 +100,6 @@ class ButtonElement implements ElementContract
 
     /**
      * Set the action ID for the button.
-     *
-     * @return $this
      */
     public function id(string $id): self
     {
@@ -118,8 +114,6 @@ class ButtonElement implements ElementContract
 
     /**
      * Set the value for the button.
-     *
-     * @return $this
      */
     public function value(string $value): self
     {
@@ -134,8 +128,6 @@ class ButtonElement implements ElementContract
 
     /**
      * Set the style for the button to primary.
-     *
-     * @return $this
      */
     public function primary(): self
     {
@@ -146,8 +138,6 @@ class ButtonElement implements ElementContract
 
     /**
      * Set the style for the button to danger.
-     *
-     * @return $this
      */
     public function danger(): self
     {
@@ -172,8 +162,6 @@ class ButtonElement implements ElementContract
 
     /**
      * Set the accessibility label for the button.
-     *
-     * @return $this
      */
     public function accessibilityLabel(string $label): self
     {

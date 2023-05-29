@@ -45,7 +45,7 @@ class SlackNotificationRouterChannel
             return $this->app->make(SlackWebhookChannel::class);
         }
 
-        if (is_string($route) & Str::startsWith($route, ['http://', 'https://'])) {
+        if (is_string($route) && Str::startsWith($route, ['http://', 'https://'])) {
             return $this->app->make(SlackWebhookChannel::class);
         }
 

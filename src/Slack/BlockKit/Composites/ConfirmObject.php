@@ -9,32 +9,24 @@ class ConfirmObject implements ObjectContract
     /**
      * A plain_text-only text object that defines the dialog's title.
      * Maximum length for this field is 100 characters.
-     *
-     * @var \Illuminate\Notifications\Slack\BlockKit\Composites\PlainTextOnlyTextObject
      */
     protected PlainTextOnlyTextObject $title;
 
     /**
      * A text object that defines the explanatory text that appears in the confirm dialog.
      * Maximum length for the text in this field is 300 characters.
-     *
-     * @var \Illuminate\Notifications\Slack\BlockKit\Composites\TextObject
      */
     protected TextObject $text;
 
     /**
      * A plain_text-only text object to define the text of the button that confirms the action.
      * Maximum length for the text in this field is 30 characters.
-     *
-     * @var \Illuminate\Notifications\Slack\BlockKit\Composites\PlainTextOnlyTextObject
      */
     protected PlainTextOnlyTextObject $confirm;
 
     /**
      * A plain_text-only text object to define the text of the button that cancels the action.
      * Maximum length for the text in this field is 30 characters.
-     *
-     * @var \Illuminate\Notifications\Slack\BlockKit\Composites\PlainTextOnlyTextObject
      */
     protected PlainTextOnlyTextObject $deny;
 
@@ -60,8 +52,6 @@ class ConfirmObject implements ObjectContract
 
     /**
      * Set the title of the confirm object.
-     *
-     * @return \Illuminate\Notifications\Slack\BlockKit\Composites\PlainTextOnlyTextObject
      */
     public function title(string $title): PlainTextOnlyTextObject
     {
@@ -72,8 +62,6 @@ class ConfirmObject implements ObjectContract
 
     /**
      * Set the text of the confirm object.
-     *
-     * @return \Illuminate\Notifications\Slack\BlockKit\Composites\TextObject
      */
     public function text(string $text): TextObject
     {
@@ -84,8 +72,6 @@ class ConfirmObject implements ObjectContract
 
     /**
      * Set the confirm button label of the confirm object.
-     *
-     * @return \Illuminate\Notifications\Slack\BlockKit\Composites\PlainTextOnlyTextObject
      */
     public function confirm(string $label): PlainTextOnlyTextObject
     {
@@ -96,8 +82,6 @@ class ConfirmObject implements ObjectContract
 
     /**
      * Set the deny button label of the confirm object.
-     *
-     * @return \Illuminate\Notifications\Slack\BlockKit\Composites\PlainTextOnlyTextObject
      */
     public function deny(string $label): PlainTextOnlyTextObject
     {
@@ -108,8 +92,6 @@ class ConfirmObject implements ObjectContract
 
     /**
      * Marks the confirm dialog as dangerous.
-     *
-     * @return $this
      */
     public function danger(): self
     {

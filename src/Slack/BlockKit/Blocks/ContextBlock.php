@@ -23,14 +23,12 @@ class ContextBlock implements BlockContract
      * An array of image elements and text objects.
      * Maximum number of items is 10.
      *
-     * @var \Illuminate\Contracts\Support\Arrayable[]
+     * @var \Illuminate\Notifications\Slack\Contracts\ElementContract[]
      */
     protected array $elements = [];
 
     /**
      * Set the block identifier.
-     *
-     * @return $this
      */
     public function id(string $id): self
     {

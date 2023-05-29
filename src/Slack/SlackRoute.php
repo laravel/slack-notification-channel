@@ -27,8 +27,6 @@ class SlackRoute
 
     /**
      * Fluently create a new Slack route instance.
-     *
-     * @return static
      */
     public static function make(string $channel = null, string $token = null): self
     {

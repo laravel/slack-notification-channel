@@ -18,8 +18,6 @@ class SlackChannel
 
     /**
      * Create a new Slack channel instance.
-     *
-     * @return void
      */
     public function __construct(Factory $http)
     {
@@ -48,9 +46,6 @@ class SlackChannel
 
     /**
      * Build up a JSON payload for the Slack chat.postMessage API.
-     *
-     * @param  \Illuminate\Notifications\Slack\SlackMessage  $message
-     * @param  \Illuminate\Notifications\Slack\SlackRoute  $route
      */
     protected function buildJsonPayload(SlackMessage $message, SlackRoute $route): array
     {
@@ -63,8 +58,6 @@ class SlackChannel
 
     /**
      * Determine the API Token and Channel that the Notification should be posted to.
-     *
-     * @return \Illuminate\Notifications\Slack\SlackRoute
      */
     protected function determineRoute(mixed $notifiable, Notification $notification): SlackRoute
     {
