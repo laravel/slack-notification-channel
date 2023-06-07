@@ -298,6 +298,19 @@ class SlackAttachment
     }
 
     /**
+     * Set the actions of the attachment.
+     *
+     * @param  array  $actions
+     * @return $this
+     */
+    public function actions(array $actions)
+    {
+        $this->actions = $actions;
+
+        return $this;
+    }
+
+    /**
      * Set the author of the attachment.
      *
      * @param  string  $name
