@@ -8,12 +8,14 @@ class TextObject extends PlainTextOnlyTextObject
 {
     /**
      * The formatting to use for this text object.
-     * Can be one of plain_text or mrkdwn.
+     *
+     * Can be one of "plain_text" or "mrkdwn".
      */
     protected string $type = 'plain_text';
 
     /**
-     * Whether to skip any preprocessing/auto-conversion of URLs, conversation names and certain mentions.
+     * Whether to skip any preprocessing / auto-conversion of URLs, conversation names, and certain mentions.
+     *
      * Only applicable for mrkdwn text objects.
      */
     protected ?bool $verbatim = null;
@@ -30,6 +32,7 @@ class TextObject extends PlainTextOnlyTextObject
 
     /**
      * Indicate that URLs, conversation names and certain mentions should not be auto-linked.
+     *
      * Only applicable for mrkdwn text objects.
      */
     public function verbatim(): self

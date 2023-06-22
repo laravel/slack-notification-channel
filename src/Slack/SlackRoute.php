@@ -6,12 +6,14 @@ class SlackRoute
 {
     /**
      * The channel to send the notification to.
+     *
      * Overrides the notification-defined channel (if any).
      */
     public ?string $channel;
 
     /**
      * The OAuth "workspace" token to use for sending the notification.
+     *
      * Overrides the config-defined token (if any).
      */
     public ?string $token;

@@ -12,13 +12,15 @@ class ImageBlock implements BlockContract
     /**
      * A string acting as a unique identifier for a block.
      *
-     * If not specified, a block_id will be generated. You can use this block_id when
-     * you receive an interaction payload to identify the source of the action.
+     * If not specified, a block_id will be generated.
+     *
+     * You can use this block_id when you receive an interaction payload to identify the source of the action.
      */
     protected ?string $blockId = null;
 
     /**
      * The URL of the image to be displayed.
+     *
      * Maximum length for this field is 3000 characters.
      */
     protected string $url;
@@ -32,6 +34,7 @@ class ImageBlock implements BlockContract
 
     /**
      * An optional title for the image in the form of a text object that can only be of type: plain_text.
+     *
      * Maximum length for the text in this field is 2000 characters.
      */
     protected ?PlainTextOnlyTextObject $title = null;
@@ -93,7 +96,7 @@ class ImageBlock implements BlockContract
         }
 
         if (is_null($this->altText)) {
-            throw new LogicException('The alt text is required for an image block.');
+            throw new LogicException('Alt text is required for an image block.');
         }
 
         $optionalFields = array_filter([

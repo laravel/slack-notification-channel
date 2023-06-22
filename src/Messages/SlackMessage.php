@@ -56,14 +56,14 @@ class SlackMessage
     public $linkNames = 0;
 
     /**
-     * Indicates if you want a preview of links inlined in the message.
+     * Indicates if a preview of links should be inlined in the message.
      *
      * @var bool
      */
     public $unfurlLinks;
 
     /**
-     * Indicates if you want a preview of links to media inlined in the message.
+     * Indicates if a preview of links to media should be inlined in the message.
      *
      * @var bool
      */

@@ -16,6 +16,12 @@ class SlackNotificationRouterChannel
      */
     protected $app;
 
+    /**
+     * Create a new Slack notification router channel.
+     *
+     * @param  \Illuminate\Contracts\Foundation\Application  $app
+     * @return void
+     */
     public function __construct($app)
     {
         $this->app = $app;
@@ -36,6 +42,8 @@ class SlackNotificationRouterChannel
     }
 
     /**
+     * Determine which channel the Slack notification should be routed to.
+     *
      * @param  mixed  $route
      * @return \Illuminate\Notifications\Channels\SlackWebhookChannel|\Illuminate\Notifications\Slack\SlackChannel
      */

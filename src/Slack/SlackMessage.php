@@ -79,7 +79,7 @@ class SlackMessage implements Arrayable
     }
 
     /**
-     * Set the fallback & notification text of the Slack message.
+     * Set the fallback and notification text of the Slack message.
      */
     public function text(string $text): self
     {
@@ -123,7 +123,7 @@ class SlackMessage implements Arrayable
     }
 
     /**
-     * Add a new Actions block to the message.
+     * Add a new Header block to the message.
      */
     public function headerBlock(string $text, Closure $callback = null): self
     {
@@ -206,7 +206,7 @@ class SlackMessage implements Arrayable
     }
 
     /**
-     * Unfurl links to rich display.
+     * Unfurl links for rich display.
      */
     public function unfurlLinks(): self
     {
@@ -216,7 +216,7 @@ class SlackMessage implements Arrayable
     }
 
     /**
-     * Unfurl media to rich display.
+     * Unfurl media for rich display.
      */
     public function unfurlMedia(): self
     {
@@ -226,7 +226,7 @@ class SlackMessage implements Arrayable
     }
 
     /**
-     * Sets the user name for the Slack bot.
+     * Set the user name for the Slack bot.
      */
     public function username(string $username): self
     {

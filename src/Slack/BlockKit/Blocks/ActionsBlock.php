@@ -13,13 +13,15 @@ class ActionsBlock implements BlockContract
     /**
      * A string acting as a unique identifier for a block.
      *
-     * If not specified, a block_id will be generated. You can use this block_id when
-     * you receive an interaction payload to identify the source of the action.
+     * If not specified, a block_id will be generated.
+     *
+     * You can use this block_id when you receive an interaction payload to identify the source of the action.
      */
     protected ?string $blockId = null;
 
     /**
      * An array of interactive element objects - buttons, select menus, overflow menus, or date pickers.
+     *
      * There is a maximum of 25 elements in each action block.
      *
      * @var \Illuminate\Notifications\Slack\Contracts\ElementContract[]

@@ -10,8 +10,9 @@ class DividerBlock implements BlockContract
     /**
      * A string acting as a unique identifier for a block.
      *
-     * If not specified, a block_id will be generated. You can use this block_id when
-     * you receive an interaction payload to identify the source of the action.
+     * If not specified, a block_id will be generated.
+     *
+     * You can use this block_id when you receive an interaction payload to identify the source of the action.
      */
     protected ?string $blockId = null;
 

@@ -42,7 +42,7 @@ class ImageElement implements ElementContract
     public function toArray(): array
     {
         if (is_null($this->altText)) {
-            throw new LogicException('The alt text is required for an image element.');
+            throw new LogicException('Alt text is required for an image element.');
         }
 
         return [

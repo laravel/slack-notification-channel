@@ -12,13 +12,15 @@ class HeaderBlock implements BlockContract
     /**
      * A string acting as a unique identifier for a block.
      *
-     * If not specified, a block_id will be generated. You can use this block_id when
-     * you receive an interaction payload to identify the source of the action.
+     * If not specified, a block_id will be generated.
+     *
+     * You can use this block_id when you receive an interaction payload to identify the source of the action.
      */
     protected ?string $blockId = null;
 
     /**
      * The text for the block, in the form of a plain_text text object.
+     *
      * Maximum length for the text in this field is 150 characters.
      */
     protected PlainTextOnlyTextObject $text;

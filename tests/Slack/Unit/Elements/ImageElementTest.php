@@ -24,7 +24,7 @@ class ImageElementTest extends TestCase
     public function the_alt_text_is_required(): void
     {
         $this->expectException(LogicException::class);
-        $this->expectExceptionMessage('The alt text is required for an image element.');
+        $this->expectExceptionMessage('Alt text is required for an image element.');
 
         $element = new ImageElement('http://placekitten.com/700/500');
 

@@ -33,7 +33,7 @@ class ImageBlockTest extends TestCase
     public function the_alt_text_is_required(): void
     {
         $this->expectException(LogicException::class);
-        $this->expectExceptionMessage('The alt text is required for an image block.');
+        $this->expectExceptionMessage('Alt text is required for an image block.');
 
         $block = new ImageBlock('http://placekitten.com/500/500');
 

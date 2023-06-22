@@ -58,7 +58,7 @@ class SlackChannel
     }
 
     /**
-     * Build up a JSON payload for the Slack chat.postMessage API.
+     * Build the JSON payload for the Slack chat.postMessage API.
      */
     protected function buildJsonPayload(SlackMessage $message, SlackRoute $route): array
     {
@@ -70,14 +70,13 @@ class SlackChannel
     }
 
     /**
-     * Determine the API Token and Channel that the Notification should be posted to.
+     * Determine the API Token and Channel that the notification should be posted to.
      */
     protected function determineRoute(mixed $notifiable, Notification $notification): SlackRoute
     {
         $route = $notifiable->routeNotificationFor('slack', $notification);
 
-        // When the route is a string, we will assume it is a channel name
-        // and will use the default API token for the application.
+        // When the route is a string, we will assume it is a channel name and will use the default API token for the application...
         if (is_string($route)) {
             return SlackRoute::make($route, Config::get('services.slack.notifications.bot_user_oauth_token'));
         }

@@ -14,13 +14,15 @@ class ContextBlock implements BlockContract
     /**
      * A string acting as a unique identifier for a block.
      *
-     * If not specified, a block_id will be generated. You can use this block_id when
-     * you receive an interaction payload to identify the source of the action.
+     * If not specified, a block_id will be generated.
+     *
+     * You can use this block_id when you receive an interaction payload to identify the source of the action.
      */
     protected ?string $blockId = null;
 
     /**
      * An array of image elements and text objects.
+     *
      * Maximum number of items is 10.
      *
      * @var \Illuminate\Notifications\Slack\Contracts\ElementContract[]
@@ -38,7 +40,7 @@ class ContextBlock implements BlockContract
     }
 
     /**
-     * Add a image element to the block.
+     * Add an image element to the block.
      */
     public function image(string $imageUrl, string $altText = null): ImageElement
     {

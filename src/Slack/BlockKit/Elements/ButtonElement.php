@@ -14,7 +14,8 @@ class ButtonElement implements ElementContract
     /**
      * A text object that defines the button's text.
      *
-     * Can only be of type: plain_text. text may truncate with ~30 characters.
+     * Can only be of type: plain_text. Text may truncate with ~30 characters.
+     *
      * Maximum length for the text in this field is 75 characters.
      */
     protected PlainTextOnlyTextObject $text;
@@ -23,7 +24,9 @@ class ButtonElement implements ElementContract
      * An identifier for this action.
      *
      * You can use this when you receive an interaction payload to identify the source of the action.
+     *
      * Should be unique among all other action_ids in the containing block.
+     *
      * Maximum length for this field is 255 characters.
      */
     protected string $actionId;
@@ -31,8 +34,8 @@ class ButtonElement implements ElementContract
     /**
      * A URL to load in the user's browser when the button is clicked.
      *
-     * Maximum length for this field is 3000 characters. If you're using url, you'll still receive
-     * an interaction payload and will need to send an acknowledgement response.
+     * Maximum length for this field is 3000 characters. If you're using a URL, you will still
+     * receive an interaction payload and will need to send an acknowledgement response.
      *
      * @link https://api.slack.com/interactivity/handling#payloads
      * @link https://api.slack.com/interactivity/handling#acknowledgment_response
@@ -41,6 +44,7 @@ class ButtonElement implements ElementContract
 
     /**
      * The value to send along with the interaction payload.
+     *
      * Maximum length for this field is 2000 characters.
      */
     protected ?string $value = null;
@@ -67,6 +71,7 @@ class ButtonElement implements ElementContract
      * A label for longer descriptive text about a button element.
      *
      * This label will be read out by screen readers instead of the button text object.
+     *
      * Maximum length for this field is 75 characters.
      */
     protected ?string $accessibilityLabel = null;
@@ -77,6 +82,7 @@ class ButtonElement implements ElementContract
     public function __construct(string $text, Closure $callback = null)
     {
         $this->text = new PlainTextOnlyTextObject($text, 75);
+
         $this->id('button_'.Str::lower(Str::slug(substr($text, 0, 248))));
 
         if ($callback) {
