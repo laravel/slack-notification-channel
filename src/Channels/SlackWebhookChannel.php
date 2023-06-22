@@ -20,7 +20,6 @@ class SlackWebhookChannel
     /**
      * Create a new Slack channel instance.
      *
-     * @param  \GuzzleHttp\Client  $http
      * @return void
      */
     public function __construct(HttpClient $http)
@@ -32,7 +31,6 @@ class SlackWebhookChannel
      * Send the given notification.
      *
      * @param  mixed  $notifiable
-     * @param  \Illuminate\Notifications\Notification  $notification
      * @return \Psr\Http\Message\ResponseInterface|null
      */
     public function send($notifiable, Notification $notification)
@@ -49,7 +47,6 @@ class SlackWebhookChannel
     /**
      * Build up a JSON payload for the Slack webhook.
      *
-     * @param  \Illuminate\Notifications\Messages\SlackMessage  $message
      * @return array
      */
     public function buildJsonPayload(SlackMessage $message)
@@ -75,7 +72,6 @@ class SlackWebhookChannel
     /**
      * Format the message's attachments.
      *
-     * @param  \Illuminate\Notifications\Messages\SlackMessage  $message
      * @return array
      */
     protected function attachments(SlackMessage $message)
@@ -107,7 +103,6 @@ class SlackWebhookChannel
     /**
      * Format the attachment's fields.
      *
-     * @param  \Illuminate\Notifications\Messages\SlackAttachment  $attachment
      * @return array
      */
     protected function fields(SlackAttachment $attachment)

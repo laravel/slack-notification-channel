@@ -56,14 +56,14 @@ class SlackMessage
     public $linkNames = 0;
 
     /**
-     * Indicates if you want a preview of links inlined in the message.
+     * Indicates if a preview of links should be inlined in the message.
      *
      * @var bool
      */
     public $unfurlLinks;
 
     /**
-     * Indicates if you want a preview of links to media inlined in the message.
+     * Indicates if a preview of links to media should be inlined in the message.
      *
      * @var bool
      */
@@ -191,7 +191,6 @@ class SlackMessage
     /**
      * Define an attachment for the message.
      *
-     * @param  \Closure  $callback
      * @return $this
      */
     public function attachment(Closure $callback)
@@ -261,7 +260,6 @@ class SlackMessage
     /**
      * Set additional request options for the Guzzle HTTP client.
      *
-     * @param  array  $options
      * @return $this
      */
     public function http(array $options)
