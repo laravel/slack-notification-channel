@@ -1,6 +1,6 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v2.5.0...master)
+## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v2.5.0...3.x)
 
 ## [v2.5.0](https://github.com/laravel/slack-notification-channel/compare/v2.4.0...v2.5.0) - 2023-01-12
 
