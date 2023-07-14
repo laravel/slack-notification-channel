@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v2.5.0...3.x)
+## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.0.0...3.x)
+
+## [v3.0.0](https://github.com/laravel/slack-notification-channel/compare/v2.5.0...v3.0.0) - 2023-07-14
+
+- Set buildJsonPayload method as public for next major release by [@BSN4](https://github.com/BSN4) in https://github.com/laravel/slack-notification-channel/pull/31
+- Support BlockKit / WebAPI-based bot notifications by [@claudiodekker](https://github.com/claudiodekker) in https://github.com/laravel/slack-notification-channel/pull/64
 
 ## [v2.5.0](https://github.com/laravel/slack-notification-channel/compare/v2.4.0...v2.5.0) - 2023-01-12
 
