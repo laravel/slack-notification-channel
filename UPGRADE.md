@@ -6,4 +6,4 @@
 
 PR: https://github.com/laravel/slack-notification-channel/pull/64
 
-Slack Notifications Channels 3.0 introduces a brand new way of writing Slack Notifications via the BlockKit API. Previous forms of Slack notifications are still supported; however, to upgrade to the BlockKit API, you are free to [consult the Laravel documentation](https://laravel.com/docs/10.x/notifications#slack-notifications) and rewrite your notifications in the new format.
+Slack Notifications Channels 3.0 introduces a brand new way of writing Slack Notifications via the Slack BlockKit API. Previous forms of Slack notifications are still supported; however, to upgrade to the BlockKit API, you are free to [consult the Laravel documentation](https://laravel.com/docs/10.x/notifications#slack-notifications) and rewrite your notifications in the new format.
