@@ -12,10 +12,13 @@ use Illuminate\Notifications\Slack\BlockKit\Blocks\ImageBlock;
 use Illuminate\Notifications\Slack\BlockKit\Blocks\SectionBlock;
 use Illuminate\Notifications\Slack\Contracts\BlockContract;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Traits\Conditionable;
 use LogicException;
 
 class SlackMessage implements Arrayable
 {
+    use Conditionable;
+
     /**
      * The channel to send the message on.
      */

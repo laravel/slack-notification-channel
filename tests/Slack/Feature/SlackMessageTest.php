@@ -344,6 +344,48 @@ class SlackMessageTest extends TestCase
     }
 
     /** @test */
+    public function it_can_add_blocks_conditionally(): void
+    {
+        $this->sendNotification(function (SlackMessage $message) {
+            $message->when(true, function (SlackMessage $message) {
+                $message->sectionBlock(function (SectionBlock $sectionBlock) {
+                    $sectionBlock->text('I *will* be included.')->markdown();
+                });
+            })->when(false, function (SlackMessage $message) {
+                $message->sectionBlock(function (SectionBlock $sectionBlock) {
+                    $sectionBlock->text("I *won't* be included.")->markdown();
+                });
+            })->when(false, function (SlackMessage $message) {
+                $message->sectionBlock(function (SectionBlock $sectionBlock) {
+                    $sectionBlock->text("I'm *not* included either...")->markdown();
+                });
+            }, function (SlackMessage $message) {
+                $message->sectionBlock(function (SectionBlock $sectionBlock) {
+                    $sectionBlock->text('But I *will* be included!')->markdown();
+                });
+            });
+        })->assertNotificationSent([
+            'channel' => '#ghost-talk',
+            'blocks' => [
+                [
+                    'type' => 'section',
+                    'text' => [
+                        'type' => 'mrkdwn',
+                        'text' => 'I *will* be included.',
+                    ],
+                ],
+                [
+                    'type' => 'section',
+                    'text' => [
+                        'type' => 'mrkdwn',
+                        'text' => 'But I *will* be included!',
+                    ],
+                ],
+            ],
+        ]);
+    }
+
+    /** @test */
     public function it_submits_blocks_in_the_order_they_were_defined(): void
     {
         $this->sendNotification(function (SlackMessage $message) {
