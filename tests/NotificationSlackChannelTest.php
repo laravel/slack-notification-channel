@@ -3,7 +3,9 @@
 namespace Illuminate\Tests\Notifications;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Response;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Channels\SlackWebhookChannel;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Notification;
@@ -51,6 +53,19 @@ class NotificationSlackChannelTest extends TestCase
         });
 
         $this->slackChannel->send(new SlackChannelTestNotifiable('url'), $notification);
+    }
+
+    public function testHandlingRateLimitedResponse()
+    {
+        $this->guzzleHttp->shouldReceive('post')->andReturnUsing(function () {
+            throw new ClientException('Too Many Requests', new \GuzzleHttp\Psr7\Request('POST', 'url'), new Response(429, ['Retry-After' => 10]));
+        });
+
+        $notification = new NotificationSlackChannelTestNotification;
+
+        $this->slackChannel->send(new SlackChannelTestNotifiable('url'), $notification);
+
+        $this->assertEquals(10, $notification->release);
     }
 
     public function payloadDataProvider()
@@ -193,8 +208,9 @@ class NotificationSlackChannelTest extends TestCase
     }
 }
 
-class NotificationSlackChannelTestNotification extends Notification
+class NotificationSlackChannelTestNotification extends Notification implements ShouldQueue
 {
+    public ?int $release = null;
     public function toSlack($notifiable)
     {
         return (new SlackMessage)
@@ -216,6 +232,11 @@ class NotificationSlackChannelTestNotification extends Notification
                     ->author('Author', 'https://laravel.com/fake_author', 'https://laravel.com/fake_author.png')
                     ->timestamp($timestamp);
             });
+    }
+
+    public function release(int $delay = 0)
+    {
+        $this->release = $delay;
     }
 }
 

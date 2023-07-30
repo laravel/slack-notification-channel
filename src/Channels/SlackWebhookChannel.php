@@ -3,6 +3,8 @@
 namespace Illuminate\Notifications\Channels;
 
 use GuzzleHttp\Client as HttpClient;
+use GuzzleHttp\Exception\ClientException;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\SlackAttachment;
 use Illuminate\Notifications\Messages\SlackAttachmentField;
 use Illuminate\Notifications\Messages\SlackMessage;
@@ -39,9 +41,17 @@ class SlackWebhookChannel
             return;
         }
 
-        return $this->http->post($url, $this->buildJsonPayload(
-            $notification->toSlack($notifiable)
-        ));
+        try {
+            return $this->http->post($url, $this->buildJsonPayload(
+                $notification->toSlack($notifiable)
+            ));
+        } catch (ClientException $e) {
+            if ($e->getCode() === 429 && $notification instanceof ShouldQueue) {
+                $notification->release($e->getResponse()->getHeader('Retry-After')[0]);
+            } else {
+                throw $e;
+            }
+        };
     }
 
     /**
