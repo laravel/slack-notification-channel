@@ -47,7 +47,7 @@ class SlackWebhookChannel
             ));
         } catch (ClientException $e) {
             if ($e->getCode() === 429 && $notification instanceof ShouldQueue) {
-                $notification->release($e->getResponse()->getHeader('Retry-After')[0]);
+                $notification->release($e->getResponse()->getHeaderLine('Retry-After'));
             } else {
                 throw $e;
             }
