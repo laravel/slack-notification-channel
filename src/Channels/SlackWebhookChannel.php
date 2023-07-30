@@ -51,7 +51,7 @@ class SlackWebhookChannel
             } else {
                 throw $e;
             }
-        };
+        }
     }
 
     /**

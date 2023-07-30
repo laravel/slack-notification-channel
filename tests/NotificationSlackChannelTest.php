@@ -211,6 +211,7 @@ class NotificationSlackChannelTest extends TestCase
 class NotificationSlackChannelTestNotification extends Notification implements ShouldQueue
 {
     public ?int $release = null;
+
     public function toSlack($notifiable)
     {
         return (new SlackMessage)
