@@ -248,7 +248,7 @@ class SlackMessage implements Arrayable
      */
     public function color(string $color): self
     {
-        $this->icon = $color;
+        $this->color = $color;
 
         return $this;
     }
