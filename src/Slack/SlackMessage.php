@@ -72,6 +72,11 @@ class SlackMessage implements Arrayable
     protected ?string $username = null;
 
     /**
+     * The color for the message.
+     */
+    protected ?string $color = null;
+
+    /**
      * Set the Slack channel the message should be sent to.
      */
     public function to(string $channel): self
@@ -239,6 +244,16 @@ class SlackMessage implements Arrayable
     }
 
     /**
+     * Set the color for the message should use.
+     */
+    public function color(string $color): self
+    {
+        $this->icon = $color;
+
+        return $this;
+    }
+
+    /**
      * Get the instance as an array.
      */
     public function toArray(): array
@@ -251,9 +266,8 @@ class SlackMessage implements Arrayable
             throw new LogicException('Slack messages can only contain up to 50 blocks.');
         }
 
-        $optionalFields = array_filter([
+        $optionalFields = [
             'text' => $this->text,
-            'blocks' => ! empty($this->blocks) ? array_map(fn (BlockContract $block) => $block->toArray(), $this->blocks) : null,
             'icon_emoji' => $this->icon,
             'icon_url' => $this->image,
             'metadata' => $this->metaData?->toArray(),
@@ -261,7 +275,20 @@ class SlackMessage implements Arrayable
             'unfurl_links' => $this->unfurlLinks,
             'unfurl_media' => $this->unfurlMedia,
             'username' => $this->username,
-        ], fn ($value) => $value !== null);
+        ];
+
+        $blocks = ! empty($this->blocks) ? array_map(fn (BlockContract $block) => $block->toArray(), $this->blocks) : null;
+
+        if ($this->color) {
+            $optionalFields['attachments'] = [[
+                'color' => $this->color,
+                'blocks' => $blocks,
+            ]];
+        } else {
+            $optionalFields['blocks'] = $blocks;
+        }
+
+        $optionalFields = array_filter($optionalFields, fn ($value) => $value !== null);
 
         return array_merge([
             'channel' => $this->channel,
