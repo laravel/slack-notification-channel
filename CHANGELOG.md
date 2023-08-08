@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.0.0...3.x)
+## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.0.1...3.x)
+
+## [v3.0.1](https://github.com/laravel/slack-notification-channel/compare/v3.0.0...v3.0.1) - 2023-07-25
+
+- Add support for conditional Slack messages by [@maartenpaauw](https://github.com/maartenpaauw) in https://github.com/laravel/slack-notification-channel/pull/71
 
 ## [v3.0.0](https://github.com/laravel/slack-notification-channel/compare/v2.5.0...v3.0.0) - 2023-07-14
 
