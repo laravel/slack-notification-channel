@@ -211,9 +211,9 @@ class SlackMessage implements Arrayable
     /**
      * Unfurl links for rich display.
      */
-    public function unfurlLinks(): self
+    public function unfurlLinks(bool $unfurlLinks = true): self
     {
-        $this->unfurlLinks = true;
+        $this->unfurlLinks = $unfurlLinks;
 
         return $this;
     }
@@ -221,9 +221,9 @@ class SlackMessage implements Arrayable
     /**
      * Unfurl media for rich display.
      */
-    public function unfurlMedia(): self
+    public function unfurlMedia(bool $unfurlMedia = true): self
     {
-        $this->unfurlMedia = true;
+        $this->unfurlMedia = $unfurlMedia;
 
         return $this;
     }
