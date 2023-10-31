@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.0.1...3.x)
+## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.1.0...3.x)
+
+## [v3.1.0](https://github.com/laravel/slack-notification-channel/compare/v3.0.1...v3.1.0) - 2023-10-30
+
+- Fix unfurlLinks and unfurlMedia methods by [@john-f-chamberlain](https://github.com/john-f-chamberlain) in https://github.com/laravel/slack-notification-channel/pull/79
 
 ## [v3.0.1](https://github.com/laravel/slack-notification-channel/compare/v3.0.0...v3.0.1) - 2023-07-25
 
