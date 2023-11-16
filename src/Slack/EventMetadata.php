@@ -18,6 +18,10 @@ class EventMetadata implements Arrayable
 
     /**
      * Create a new event metadata instance.
+     *
+     * @param  string  $type
+     * @param  array  $payload
+     * @return void
      */
     public function __construct(string $type, array $payload = [])
     {
