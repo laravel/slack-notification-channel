@@ -20,6 +20,9 @@ class SlackChannel
 
     /**
      * Create a new Slack channel instance.
+     *
+     * @param  \Illuminate\Http\Client\Factory  $http
+     * @return void
      */
     public function __construct(Factory $http)
     {
