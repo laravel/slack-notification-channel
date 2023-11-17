@@ -20,6 +20,10 @@ class SlackRoute
 
     /**
      * Create a new Slack route instance.
+     *
+     * @param string|null $channel
+     * @param string|null $token
+     * @return void
      */
     public function __construct(string $channel = null, string $token = null)
     {
