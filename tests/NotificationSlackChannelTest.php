@@ -53,7 +53,7 @@ class NotificationSlackChannelTest extends TestCase
         $this->slackChannel->send(new SlackChannelTestNotifiable('url'), $notification);
     }
 
-    public function payloadDataProvider()
+    public static function payloadDataProvider()
     {
         return [
             'payloadWithIcon' => $this->getPayloadWithIcon(),
