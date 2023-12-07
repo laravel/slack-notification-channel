@@ -3,6 +3,7 @@
 namespace Illuminate\Notifications\Slack;
 
 use Illuminate\Http\Client\Factory;
+use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\Client\Response;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Config;
@@ -30,7 +31,10 @@ class SlackChannel
     }
 
     /**
-     * Send the given notification.
+     * @param mixed $notifiable
+     * @param Notification $notification
+     * @return Response|null
+     * @throws RequestException
      */
     public function send(mixed $notifiable, Notification $notification): ?Response
     {
@@ -61,7 +65,9 @@ class SlackChannel
     }
 
     /**
-     * Build the JSON payload for the Slack chat.postMessage API.
+     * @param SlackMessage $message
+     * @param SlackRoute $route
+     * @return array
      */
     protected function buildJsonPayload(SlackMessage $message, SlackRoute $route): array
     {
@@ -73,7 +79,9 @@ class SlackChannel
     }
 
     /**
-     * Determine the API Token and Channel that the notification should be posted to.
+     * @param mixed $notifiable
+     * @param Notification $notification
+     * @return SlackRoute
      */
     protected function determineRoute(mixed $notifiable, Notification $notification): SlackRoute
     {
