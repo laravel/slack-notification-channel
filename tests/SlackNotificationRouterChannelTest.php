@@ -61,6 +61,22 @@ class SlackNotificationRouterChannelTest extends TestCase
 
         $channel->send(new SlackChannelTestNotifiable('#general'), new SlackChannelTestNotification());
     }
+
+    /** @test */
+    public function it_stops_sending_when_the_notifiable_route_is_false(): void
+    {
+        $app = new Container();
+        $app->bind(SlackWebhookChannel::class, fn () => new FakeSlackChannel(function () {
+            $this->fail('The Slack Webhook Channel should not have been called.');
+        }));
+        $app->bind(SlackWebApiChannel::class, fn () => new FakeSlackChannel(function () {
+            $this->fail('The Slack WebAPI Channel should not have been called.');
+        }));
+
+        $channel = new SlackNotificationRouterChannel($app);
+
+        $this->assertEquals(null, $channel->send(new SlackChannelTestNotifiable(false), new SlackChannelTestNotification()));
+    }
 }
 
 class FakeSlackChannel
