@@ -38,7 +38,9 @@ class SlackNotificationRouterChannel
     {
         $route = $notifiable->routeNotificationFor('slack', $notification);
 
-        if ($route === false) return null;
+        if ($route === false) {
+            return;
+        }
 
         return $this->determineChannel($route)->send($notifiable, $notification);
     }
