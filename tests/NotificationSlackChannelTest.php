@@ -14,25 +14,6 @@ use PHPUnit\Framework\TestCase;
 
 class NotificationSlackChannelTest extends TestCase
 {
-    /**
-     * @var \Illuminate\Notifications\Channels\SlackWebhookChannel
-     */
-    private $slackChannel;
-
-    /**
-     * @var \Mockery\MockInterface|\GuzzleHttp\Client
-     */
-    private $guzzleHttp;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->guzzleHttp = m::mock(Client::class);
-
-        $this->slackChannel = new SlackWebhookChannel($this->guzzleHttp);
-    }
-
     protected function tearDown(): void
     {
         m::close();
@@ -43,27 +24,31 @@ class NotificationSlackChannelTest extends TestCase
      */
     public function testCorrectPayloadIsSentToSlack(Notification $notification, array $payload)
     {
-        $this->guzzleHttp->shouldReceive('post')->andReturnUsing(function ($argUrl, $argPayload) use ($payload) {
+        $guzzleHttp = m::mock(Client::class);
+
+        $slackChannel = new SlackWebhookChannel($guzzleHttp);
+
+        $guzzleHttp->shouldReceive('post')->andReturnUsing(function ($argUrl, $argPayload) use ($payload) {
             $this->assertEquals($argUrl, 'url');
             $this->assertEquals($argPayload, $payload);
 
             return new Response();
         });
 
-        $this->slackChannel->send(new SlackChannelTestNotifiable('url'), $notification);
+        $slackChannel->send(new SlackChannelTestNotifiable('url'), $notification);
     }
 
-    public function payloadDataProvider()
+    public static function payloadDataProvider()
     {
         return [
-            'payloadWithIcon' => $this->getPayloadWithIcon(),
-            'payloadWithImageIcon' => $this->getPayloadWithImageIcon(),
-            'payloadWithoutOptionalFields' => $this->getPayloadWithoutOptionalFields(),
-            'payloadWithAttachmentFieldBuilder' => $this->getPayloadWithAttachmentFieldBuilder(),
+            'payloadWithIcon' => static::getPayloadWithIcon(),
+            'payloadWithImageIcon' => static::getPayloadWithImageIcon(),
+            'payloadWithoutOptionalFields' => static::getPayloadWithoutOptionalFields(),
+            'payloadWithAttachmentFieldBuilder' => static::getPayloadWithAttachmentFieldBuilder(),
         ];
     }
 
-    private function getPayloadWithIcon()
+    protected static function getPayloadWithIcon()
     {
         return [
             new NotificationSlackChannelTestNotification,
@@ -100,7 +85,7 @@ class NotificationSlackChannelTest extends TestCase
         ];
     }
 
-    private function getPayloadWithImageIcon()
+    protected static function getPayloadWithImageIcon()
     {
         return [
             new NotificationSlackChannelTestNotificationWithImageIcon,
@@ -134,7 +119,7 @@ class NotificationSlackChannelTest extends TestCase
         ];
     }
 
-    private function getPayloadWithoutOptionalFields()
+    protected static function getPayloadWithoutOptionalFields()
     {
         return [
             new NotificationSlackChannelWithoutOptionalFieldsTestNotification,
@@ -160,7 +145,7 @@ class NotificationSlackChannelTest extends TestCase
         ];
     }
 
-    public function getPayloadWithAttachmentFieldBuilder()
+    protected static function getPayloadWithAttachmentFieldBuilder()
     {
         return [
             new NotificationSlackChannelWithAttachmentFieldBuilderTestNotification,
