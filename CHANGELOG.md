@@ -1,6 +1,12 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.1.0...3.x)
+## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.1.1...3.x)
+
+## [v3.1.1](https://github.com/laravel/slack-notification-channel/compare/v3.1.0...v3.1.1) - 2024-01-06
+
+* constructor method parameter declaration by [@slvler](https://github.com/slvler) in https://github.com/laravel/slack-notification-channel/pull/80
+* constructor method parameter declaration by [@slvler](https://github.com/slvler) in https://github.com/laravel/slack-notification-channel/pull/82
+* Support disabling slack route dynamically when using `SlackWebhookChannel` by [@marijoo](https://github.com/marijoo) in https://github.com/laravel/slack-notification-channel/pull/87
 
 ## [v3.1.0](https://github.com/laravel/slack-notification-channel/compare/v3.0.1...v3.1.0) - 2023-10-30
 
