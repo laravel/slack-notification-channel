@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.1.1...3.x)
+## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.2.0...3.x)
+
+## [v3.2.0](https://github.com/laravel/slack-notification-channel/compare/v3.1.1...v3.2.0) - 2024-01-15
+
+* [3.x] Merge develop by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/slack-notification-channel/pull/88
 
 ## [v3.1.1](https://github.com/laravel/slack-notification-channel/compare/v3.1.0...v3.1.1) - 2024-01-06
 
