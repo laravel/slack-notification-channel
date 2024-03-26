@@ -2,15 +2,15 @@
 
 namespace Illuminate\Tests\Notifications;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Response;
+use Illuminate\Http\Client\Request;
 use Illuminate\Notifications\Channels\SlackWebhookChannel;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Tests\Notifications\Slack\SlackChannelTestNotifiable;
+use Illuminate\Tests\Notifications\Slack\TestCase;
 use Mockery as m;
-use PHPUnit\Framework\TestCase;
 
 class NotificationSlackChannelTest extends TestCase
 {
@@ -24,18 +24,19 @@ class NotificationSlackChannelTest extends TestCase
      */
     public function testCorrectPayloadIsSentToSlack(Notification $notification, array $payload)
     {
-        $guzzleHttp = m::mock(Client::class);
+        $this->http->fake([
+            'url' => $this->http->response(),
+        ]);
 
-        $slackChannel = new SlackWebhookChannel($guzzleHttp);
-
-        $guzzleHttp->shouldReceive('post')->andReturnUsing(function ($argUrl, $argPayload) use ($payload) {
-            $this->assertEquals($argUrl, 'url');
-            $this->assertEquals($argPayload, $payload);
-
-            return new Response();
-        });
-
+        $slackChannel = new SlackWebhookChannel($this->http);
         $slackChannel->send(new SlackChannelTestNotifiable('url'), $notification);
+
+        $this->http->assertSent(function (Request $request) use ($payload) {
+            $requestPayload = Arr::sortRecursive(json_decode($request->body(), true));
+            $expectedPayload = Arr::sortRecursive($payload);
+
+            return $request->url() === 'url' && $requestPayload === $expectedPayload;
+        });
     }
 
     public static function payloadDataProvider()

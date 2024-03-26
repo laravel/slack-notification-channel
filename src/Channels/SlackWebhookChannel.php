@@ -3,6 +3,7 @@
 namespace Illuminate\Notifications\Channels;
 
 use GuzzleHttp\Client as HttpClient;
+use Illuminate\Http\Client\Factory;
 use Illuminate\Notifications\Messages\SlackAttachment;
 use Illuminate\Notifications\Messages\SlackAttachmentField;
 use Illuminate\Notifications\Messages\SlackMessage;
@@ -13,7 +14,7 @@ class SlackWebhookChannel
     /**
      * The HTTP client instance.
      *
-     * @var \GuzzleHttp\Client
+     * @var \Illuminate\Http\Client\Factory
      */
     protected $http;
 
@@ -22,7 +23,7 @@ class SlackWebhookChannel
      *
      * @return void
      */
-    public function __construct(HttpClient $http)
+    public function __construct(Factory $http)
     {
         $this->http = $http;
     }
@@ -31,12 +32,12 @@ class SlackWebhookChannel
      * Send the given notification.
      *
      * @param  mixed  $notifiable
-     * @return \Psr\Http\Message\ResponseInterface|null
+     * @return \Illuminate\Http\Client\Response|null
      */
     public function send($notifiable, Notification $notification)
     {
         if (! $url = $notifiable->routeNotificationFor('slack', $notification)) {
-            return;
+            return null;
         }
 
         return $this->http->post($url, $this->buildJsonPayload(
