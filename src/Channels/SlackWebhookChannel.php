@@ -2,7 +2,6 @@
 
 namespace Illuminate\Notifications\Channels;
 
-use GuzzleHttp\Client as HttpClient;
 use Illuminate\Http\Client\Factory;
 use Illuminate\Notifications\Messages\SlackAttachment;
 use Illuminate\Notifications\Messages\SlackAttachmentField;
