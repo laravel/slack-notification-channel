@@ -72,6 +72,16 @@ class SlackMessage implements Arrayable
     protected ?string $username = null;
 
     /**
+     * Unique, per-channel, timestamp for each message. If provided, send message as a thread reply to this message.
+     */
+    protected ?string $threadTs = null;
+
+    /**
+     * If sending message as reply to thread, whether to 'broadcast' a reference to the thread reply to the parent conversation.
+     */
+    protected ?bool $broadcastReply = null;
+
+    /**
      * Set the Slack channel the message should be sent to.
      */
     public function to(string $channel): self
@@ -239,6 +249,26 @@ class SlackMessage implements Arrayable
     }
 
     /**
+     * Set the thread timestamp (message ID) to send as reply to thread.
+     */
+    public function threadTimestamp(?string $threadTimestamp): self
+    {
+        $this->threadTs = $threadTimestamp;
+
+        return $this;
+    }
+
+    /**
+     * Only applicable if threadTimestamp is set. Broadcasts a reference to the threaded reply to the parent conversation.
+     */
+    public function broadcastReply(?bool $broadcastReply = true): self
+    {
+        $this->broadcastReply = $broadcastReply;
+
+        return $this;
+    }
+
+    /**
      * Get the instance as an array.
      */
     public function toArray(): array
@@ -258,6 +288,8 @@ class SlackMessage implements Arrayable
             'icon_url' => $this->image,
             'metadata' => $this->metaData?->toArray(),
             'mrkdwn' => $this->mrkdwn,
+            'thread_ts' => $this->threadTs,
+            'reply_broadcast' => $this->broadcastReply,
             'unfurl_links' => $this->unfurlLinks,
             'unfurl_media' => $this->unfurlMedia,
             'username' => $this->username,

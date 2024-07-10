@@ -188,6 +188,32 @@ class SlackMessageTest extends TestCase
     }
 
     /** @test */
+    public function it_can_reply_as_thread(): void
+    {
+        $this->sendNotification(function (SlackMessage $message) {
+            $message->text('See https://api.slack.com/methods/chat.postMessage for more information.');
+            $message->threadTimestamp('123456.7890');
+        })->assertNotificationSent([
+            'channel' => '#ghost-talk',
+            'text' => 'See https://api.slack.com/methods/chat.postMessage for more information.',
+            'thread_ts' => '123456.7890',
+        ]);
+    }
+
+    /** @test */
+    public function it_can_send_threaded_reply_as_broadcast_reference(): void
+    {
+        $this->sendNotification(function (SlackMessage $message) {
+            $message->text('See https://api.slack.com/methods/chat.postMessage for more information.');
+            $message->broadcastReply(true);
+        })->assertNotificationSent([
+            'channel' => '#ghost-talk',
+            'text' => 'See https://api.slack.com/methods/chat.postMessage for more information.',
+            'reply_broadcast' => true,
+        ]);
+    }
+
+    /** @test */
     public function it_can_set_the_bot_user_name(): void
     {
         $this->sendNotification(function (SlackMessage $message) {
