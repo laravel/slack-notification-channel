@@ -205,7 +205,7 @@ class SlackMessageTest extends TestCase
     {
         $this->sendNotification(function (SlackMessage $message) {
             $message->text('See https://api.slack.com/methods/chat.postMessage for more information.');
-            $message->replyBroadcast(true);
+            $message->broadcastReply(true);
         })->assertNotificationSent([
             'channel' => '#ghost-talk',
             'text' => 'See https://api.slack.com/methods/chat.postMessage for more information.',

@@ -79,7 +79,7 @@ class SlackMessage implements Arrayable
     /**
      * If sending message as reply to thread, whether to 'broadcast' a reference to the thread reply to the parent conversation.
      */
-    protected ?bool $replyBroadcast = null;
+    protected ?bool $broadcastReply = null;
 
     /**
      * Set the Slack channel the message should be sent to.
@@ -259,11 +259,11 @@ class SlackMessage implements Arrayable
     }
 
     /**
-     * Only applicable if threadTimestamp is set. 'Broadcasts' a reference to the threaded reply to the parent conversation.
+     * Only applicable if threadTimestamp is set. Broadcasts a reference to the threaded reply to the parent conversation.
      */
-    public function replyBroadcast(?bool $replyBroadcast): self
+    public function broadcastReply(?bool $broadcastReply = true): self
     {
-        $this->replyBroadcast = $replyBroadcast;
+        $this->broadcastReply = $broadcastReply;
 
         return $this;
     }
@@ -289,7 +289,7 @@ class SlackMessage implements Arrayable
             'metadata' => $this->metaData?->toArray(),
             'mrkdwn' => $this->mrkdwn,
             'thread_ts' => $this->threadTs,
-            'reply_broadcast' => $this->replyBroadcast,
+            'reply_broadcast' => $this->broadcastReply,
             'unfurl_links' => $this->unfurlLinks,
             'unfurl_media' => $this->unfurlMedia,
             'username' => $this->username,
