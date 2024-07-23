@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.2.0...3.x)
+## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.3.0...3.x)
+
+## [v3.3.0](https://github.com/laravel/slack-notification-channel/compare/v3.2.0...v3.3.0) - 2024-07-10
+
+* Use new static analysis workflow by [@Jubeki](https://github.com/Jubeki) in https://github.com/laravel/slack-notification-channel/pull/89
+* feat: support threaded replies for SlackMessage by [@Ma-ve](https://github.com/Ma-ve) in https://github.com/laravel/slack-notification-channel/pull/94
 
 ## [v3.2.0](https://github.com/laravel/slack-notification-channel/compare/v3.1.1...v3.2.0) - 2024-01-15
 
