@@ -76,6 +76,9 @@ class SlackNotificationRouterChannelTest extends TestCase
         $channel = new SlackNotificationRouterChannel($app);
 
         $this->assertEquals(null, $channel->send(new SlackChannelTestNotifiable(false), new SlackChannelTestNotification()));
+        $this->assertEquals(null, $channel->send(new SlackChannelTestNotifiable(null), new SlackChannelTestNotification()));
+        $this->assertEquals(null, $channel->send(new SlackChannelTestNotifiable(''), new SlackChannelTestNotification()));
+        $this->assertEquals(null, $channel->send(new SlackChannelTestNotifiable([]), new SlackChannelTestNotification()));
     }
 }
 
