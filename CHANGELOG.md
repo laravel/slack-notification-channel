@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.3.0...3.x)
+## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.3.1...3.x)
+
+## [v3.3.1](https://github.com/laravel/slack-notification-channel/compare/v3.3.0...v3.3.1) - 2024-08-17
+
+* fix: do not notify when route is empty by [@TomaszOnePilot](https://github.com/TomaszOnePilot) in https://github.com/laravel/slack-notification-channel/pull/96
 
 ## [v3.3.0](https://github.com/laravel/slack-notification-channel/compare/v3.2.0...v3.3.0) - 2024-07-10
 
