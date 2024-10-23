@@ -286,11 +286,13 @@ class SlackMessage implements Arrayable
      */
     public function toArray(): array
     {
-        if ((empty($this->blocks) && is_null($this->blockBuilder))  && $this->text === null) {
+        if (empty($this->blocks) && is_null($this->blockBuilder)  && $this->text === null) {
             throw new LogicException('Slack messages must contain at least a text message or block.');
         }
 
-        if (count($this->blocks) > 50 || (!is_null($this->blockBuilder) && count($this->blockBuilder->toArray()) > 50)) {
+        $builderBlocks = is_null($this->blockBuilder) ? [] : $this->blockBuilder->toArray();
+
+        if (count($this->blocks) > 50 || count($builderBlocks) > 50) {
             throw new LogicException('Slack messages can only contain up to 50 blocks.');
         }
 
@@ -298,7 +300,7 @@ class SlackMessage implements Arrayable
             'text' => $this->text,
             'blocks' => is_null($this->blockBuilder)
                 ? (! empty($this->blocks) ? array_map(fn (BlockContract $block) => $block->toArray(), $this->blocks) : null)
-                : $this->blockBuilder->toArray(),
+                : $builderBlocks,
             'icon_emoji' => $this->icon,
             'icon_url' => $this->image,
             'metadata' => $this->metaData?->toArray(),
