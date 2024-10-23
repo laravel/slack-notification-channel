@@ -286,11 +286,11 @@ class SlackMessage implements Arrayable
      */
     public function toArray(): array
     {
-        if (empty($this->blocks) && $this->text === null) {
+        if ((empty($this->blocks) && is_null($this->builder))  && $this->text === null) {
             throw new LogicException('Slack messages must contain at least a text message or block.');
         }
 
-        if (count($this->blocks) > 50) {
+        if (count($this->blocks) > 50 || (!is_null($this->builder) && count($this->builder->toArray()) > 50)) {
             throw new LogicException('Slack messages can only contain up to 50 blocks.');
         }
 
