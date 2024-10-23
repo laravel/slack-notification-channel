@@ -1,5 +1,6 @@
 # Laravel Slack Notification Channel
 
+
 <a href="https://github.com/laravel/slack-notification-channel/actions"><img src="https://github.com/laravel/slack-notification-channel/workflows/tests/badge.svg" alt="Build Status"></a>
 <a href="https://packagist.org/packages/laravel/slack-notification-channel"><img src="https://img.shields.io/packagist/dt/laravel/slack-notification-channel" alt="Total Downloads"></a>
 <a href="https://packagist.org/packages/laravel/slack-notification-channel"><img src="https://img.shields.io/packagist/v/laravel/slack-notification-channel" alt="Latest Stable Version"></a>

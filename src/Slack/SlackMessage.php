@@ -10,7 +10,9 @@ use Illuminate\Notifications\Slack\BlockKit\Blocks\DividerBlock;
 use Illuminate\Notifications\Slack\BlockKit\Blocks\HeaderBlock;
 use Illuminate\Notifications\Slack\BlockKit\Blocks\ImageBlock;
 use Illuminate\Notifications\Slack\BlockKit\Blocks\SectionBlock;
+use Illuminate\Notifications\Slack\BlockKit\Builder;
 use Illuminate\Notifications\Slack\Contracts\BlockContract;
+use Illuminate\Notifications\Slack\Contracts\BuilderContract;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Traits\Conditionable;
 use LogicException;
@@ -81,12 +83,26 @@ class SlackMessage implements Arrayable
      */
     protected ?bool $broadcastReply = null;
 
+    protected ?BuilderContract $builder = null;
+
     /**
      * Set the Slack channel the message should be sent to.
      */
     public function to(string $channel): self
     {
         $this->channel = $channel;
+
+        return $this;
+    }
+
+
+    /**
+     * Set the Block Kit Builder json payload.
+     */
+    public function builder(BuilderContract|string $builder): self{
+        $this->builder = $builder instanceof BuilderContract
+            ? $builder
+            : (new Builder)->payload($builder);
 
         return $this;
     }
@@ -283,7 +299,9 @@ class SlackMessage implements Arrayable
 
         $optionalFields = array_filter([
             'text' => $this->text,
-            'blocks' => ! empty($this->blocks) ? array_map(fn (BlockContract $block) => $block->toArray(), $this->blocks) : null,
+            'blocks' => is_null($this->builder)
+                ? (! empty($this->blocks) ? array_map(fn (BlockContract $block) => $block->toArray(), $this->blocks) : null)
+                : $this->builder->toArray(),
             'icon_emoji' => $this->icon,
             'icon_url' => $this->image,
             'metadata' => $this->metaData?->toArray(),
