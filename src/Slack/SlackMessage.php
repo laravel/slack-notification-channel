@@ -12,7 +12,6 @@ use Illuminate\Notifications\Slack\BlockKit\Blocks\ImageBlock;
 use Illuminate\Notifications\Slack\BlockKit\Blocks\SectionBlock;
 use Illuminate\Notifications\Slack\BlockKit\Builder;
 use Illuminate\Notifications\Slack\Contracts\BlockContract;
-use Illuminate\Notifications\Slack\Contracts\BuilderContract;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Traits\Conditionable;
 use LogicException;
@@ -83,7 +82,7 @@ class SlackMessage implements Arrayable
      */
     protected ?bool $broadcastReply = null;
 
-    protected ?BuilderContract $builder = null;
+    protected ?Builder $builder = null;
 
     /**
      * Set the Slack channel the message should be sent to.
@@ -99,10 +98,8 @@ class SlackMessage implements Arrayable
     /**
      * Set the Block Kit Builder json payload.
      */
-    public function builder(BuilderContract|string $builder): self{
-        $this->builder = $builder instanceof BuilderContract
-            ? $builder
-            : (new Builder)->payload($builder);
+    public function builder(string $payload): self{
+        $this->builder = new Builder($payload);
 
         return $this;
     }

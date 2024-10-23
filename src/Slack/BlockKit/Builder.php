@@ -3,17 +3,22 @@
 namespace Illuminate\Notifications\Slack\BlockKit;
 
 
-use Illuminate\Notifications\Slack\Contracts\BuilderContract;
+use Illuminate\Contracts\Support\Arrayable;
 use JsonException;
 
-class Builder implements BuilderContract
+class Builder implements Arrayable
 {
-    protected string $payload = "[]";
+    public function __construct(
+        protected string $payload = "[]"
+    ){
+    }
 
-    public function payload(string $payload): self{
-        $this->payload = $payload;
-
-        return $this;
+    /**
+     * Fluently create a new Builder instance.
+     */
+    public static function make(string $payload): self
+    {
+        return new self($payload);
     }
 
     /**

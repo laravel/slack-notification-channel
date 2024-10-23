@@ -2,20 +2,16 @@
 
 namespace Illuminate\Tests\Notifications\Slack\Unit;
 
-use Illuminate\Notifications\Slack\BlockKit\Blocks\SectionBlock;
 use Illuminate\Notifications\Slack\BlockKit\Builder;
-use Illuminate\Notifications\Slack\BlockKit\Elements\ImageElement;
 use Illuminate\Tests\Notifications\Slack\TestCase;
 use JsonException;
-use LogicException;
 
 class BuilderTest extends TestCase
 {
     /** @test */
     public function it_is_arrayable_and_removes_the_blocks_key(): void
     {
-        $builder = new Builder();
-        $builder->payload(<<<JSON
+        $builder = new Builder(<<<JSON
             {
                 "blocks": [
                     {
@@ -59,8 +55,7 @@ class BuilderTest extends TestCase
     {
         $this->expectException(JsonException::class);
 
-        $builder = new Builder();
-        $builder->payload("!!!");
+        $builder = new Builder("!!!");
         $builder->toArray();
     }
 }
