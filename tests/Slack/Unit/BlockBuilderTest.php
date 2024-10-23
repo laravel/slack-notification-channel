@@ -43,11 +43,11 @@ class BlockBuilderTest extends TestCase
 
         $this->assertSame([
             [
-                'type'=> 'section',
-                'text'=> [
-                    'type'=> 'plain_text',
-                    'text'=> 'This is a plain text section block.',
-                    'emoji'=> true
+                'type' => 'section',
+                'text' => [
+                    'type' => 'plain_text',
+                    'text' => 'This is a plain text section block.',
+                    'emoji' => true,
                 ],
             ],
             [

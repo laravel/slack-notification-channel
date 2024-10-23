@@ -4,13 +4,13 @@ namespace Illuminate\Notifications\Slack;
 
 use Closure;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Notifications\Slack\BlockKit\BlockBuilder;
 use Illuminate\Notifications\Slack\BlockKit\Blocks\ActionsBlock;
 use Illuminate\Notifications\Slack\BlockKit\Blocks\ContextBlock;
 use Illuminate\Notifications\Slack\BlockKit\Blocks\DividerBlock;
 use Illuminate\Notifications\Slack\BlockKit\Blocks\HeaderBlock;
 use Illuminate\Notifications\Slack\BlockKit\Blocks\ImageBlock;
 use Illuminate\Notifications\Slack\BlockKit\Blocks\SectionBlock;
-use Illuminate\Notifications\Slack\BlockKit\BlockBuilder;
 use Illuminate\Notifications\Slack\Contracts\BlockContract;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Traits\Conditionable;
@@ -286,7 +286,7 @@ class SlackMessage implements Arrayable
      */
     public function toArray(): array
     {
-        if (empty($this->blocks) && is_null($this->blockBuilder)  && $this->text === null) {
+        if (empty($this->blocks) && is_null($this->blockBuilder) && $this->text === null) {
             throw new LogicException('Slack messages must contain at least a text message or block.');
         }
 

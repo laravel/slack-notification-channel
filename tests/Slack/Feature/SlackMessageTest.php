@@ -449,7 +449,8 @@ class SlackMessageTest extends TestCase
     }
 
     /** @test */
-    public function it_can_use_copied_block_kit_builder_json(){
+    public function it_can_use_copied_block_kit_builder_json()
+    {
         $this->sendNotification(function (SlackMessage $message) {
             $message->blockBuilder(<<<'JSON'
                 {
