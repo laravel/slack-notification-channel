@@ -15,6 +15,14 @@ class BuilderTest extends TestCase
             {
                 "blocks": [
                     {
+                        "type": "section",
+                        "text": {
+                            "type": "plain_text",
+                            "text": "This is a plain text section block.",
+                            "emoji": true
+                        }
+                    },
+                    {
                         "type": "actions",
                         "elements": [
                             {
@@ -34,19 +42,29 @@ class BuilderTest extends TestCase
         JSON);
 
         $this->assertSame([
-            'type' => 'actions',
-            'elements' => [
-                [
-                    'type' => 'button',
-                    'text' => [
-                        'type' => 'plain_text',
-                        'text' => 'Click Me',
-                        'emoji' => true,
-                    ],
-                    'value' => 'click_me_123',
-                    'action_id' => 'actionId-0',
-                ],
+            [
+                "type"=> "section",
+                "text"=> [
+                    "type"=> "plain_text",
+                    "text"=> "This is a plain text section block.",
+                    "emoji"=> true
+                ]
             ],
+            [
+                'type' => 'actions',
+                'elements' => [
+                    [
+                        'type' => 'button',
+                        'text' => [
+                            'type' => 'plain_text',
+                            'text' => 'Click Me',
+                            'emoji' => true,
+                        ],
+                        'value' => 'click_me_123',
+                        'action_id' => 'actionId-0',
+                    ],
+                ],
+            ]
         ], $builder->toArray());
     }
 

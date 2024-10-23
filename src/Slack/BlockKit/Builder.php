@@ -2,7 +2,6 @@
 
 namespace Illuminate\Notifications\Slack\BlockKit;
 
-
 use Illuminate\Contracts\Support\Arrayable;
 use JsonException;
 
@@ -28,6 +27,6 @@ class Builder implements Arrayable
     {
         $array = json_decode($this->payload, true, flags: JSON_THROW_ON_ERROR);
 
-        return array_key_exists('blocks', $array) ? $array['blocks'][0] : $array;
+        return array_key_exists('blocks', $array) ? $array['blocks'] : $array;
     }
 }
