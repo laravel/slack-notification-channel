@@ -5,7 +5,7 @@ namespace Illuminate\Notifications\Slack\BlockKit;
 use Illuminate\Contracts\Support\Arrayable;
 use JsonException;
 
-class Builder implements Arrayable
+class BlockBuilder implements Arrayable
 {
     public function __construct(
         protected string $payload = '[]'

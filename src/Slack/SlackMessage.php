@@ -10,7 +10,7 @@ use Illuminate\Notifications\Slack\BlockKit\Blocks\DividerBlock;
 use Illuminate\Notifications\Slack\BlockKit\Blocks\HeaderBlock;
 use Illuminate\Notifications\Slack\BlockKit\Blocks\ImageBlock;
 use Illuminate\Notifications\Slack\BlockKit\Blocks\SectionBlock;
-use Illuminate\Notifications\Slack\BlockKit\Builder;
+use Illuminate\Notifications\Slack\BlockKit\BlockBuilder;
 use Illuminate\Notifications\Slack\Contracts\BlockContract;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Traits\Conditionable;
@@ -82,7 +82,7 @@ class SlackMessage implements Arrayable
      */
     protected ?bool $broadcastReply = null;
 
-    protected ?Builder $builder = null;
+    protected ?BlockBuilder $blockBuilder = null;
 
     /**
      * Set the Slack channel the message should be sent to.
@@ -97,9 +97,9 @@ class SlackMessage implements Arrayable
     /**
      * Set the Block Kit Builder json payload.
      */
-    public function builder(string $payload): self
+    public function blockBuilder(string $payload): self
     {
-        $this->builder = new Builder($payload);
+        $this->blockBuilder = new BlockBuilder($payload);
 
         return $this;
     }
@@ -286,19 +286,19 @@ class SlackMessage implements Arrayable
      */
     public function toArray(): array
     {
-        if ((empty($this->blocks) && is_null($this->builder))  && $this->text === null) {
+        if ((empty($this->blocks) && is_null($this->blockBuilder))  && $this->text === null) {
             throw new LogicException('Slack messages must contain at least a text message or block.');
         }
 
-        if (count($this->blocks) > 50 || (!is_null($this->builder) && count($this->builder->toArray()) > 50)) {
+        if (count($this->blocks) > 50 || (!is_null($this->blockBuilder) && count($this->blockBuilder->toArray()) > 50)) {
             throw new LogicException('Slack messages can only contain up to 50 blocks.');
         }
 
         $optionalFields = array_filter([
             'text' => $this->text,
-            'blocks' => is_null($this->builder)
+            'blocks' => is_null($this->blockBuilder)
                 ? (! empty($this->blocks) ? array_map(fn (BlockContract $block) => $block->toArray(), $this->blocks) : null)
-                : $this->builder->toArray(),
+                : $this->blockBuilder->toArray(),
             'icon_emoji' => $this->icon,
             'icon_url' => $this->image,
             'metadata' => $this->metaData?->toArray(),
