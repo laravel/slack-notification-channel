@@ -98,7 +98,8 @@ class SlackMessage implements Arrayable
     /**
      * Set the Block Kit Builder json payload.
      */
-    public function builder(string $payload): self{
+    public function builder(string $payload): self
+    {
         $this->builder = new Builder($payload);
 
         return $this;

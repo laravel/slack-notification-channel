@@ -11,7 +11,7 @@ class BuilderTest extends TestCase
     /** @test */
     public function it_is_arrayable_and_removes_the_blocks_key(): void
     {
-        $builder = new Builder(<<<JSON
+        $builder = new Builder(<<<'JSON'
             {
                 "blocks": [
                     {
@@ -48,7 +48,7 @@ class BuilderTest extends TestCase
                     "type"=> "plain_text",
                     "text"=> "This is a plain text section block.",
                     "emoji"=> true
-                ]
+                ],
             ],
             [
                 'type' => 'actions',
@@ -64,7 +64,7 @@ class BuilderTest extends TestCase
                         'action_id' => 'actionId-0',
                     ],
                 ],
-            ]
+            ],
         ], $builder->toArray());
     }
 
@@ -73,7 +73,7 @@ class BuilderTest extends TestCase
     {
         $this->expectException(JsonException::class);
 
-        $builder = new Builder("!!!");
+        $builder = new Builder('!!!');
         $builder->toArray();
     }
 }
