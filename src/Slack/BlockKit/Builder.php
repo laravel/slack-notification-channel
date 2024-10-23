@@ -9,7 +9,7 @@ class Builder implements Arrayable
 {
     public function __construct(
         protected string $payload = '[]'
-    ){
+    ) {
     }
 
     /**

@@ -94,7 +94,6 @@ class SlackMessage implements Arrayable
         return $this;
     }
 
-
     /**
      * Set the Block Kit Builder json payload.
      */
