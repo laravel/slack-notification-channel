@@ -574,5 +574,3 @@ class SlackMessageTest extends TestCase
         ]);
     }
 }
-
-

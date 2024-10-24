@@ -94,6 +94,7 @@ class SlackMessage implements Arrayable
 
     /**
      * Set the Block Kit Builder json payload.
+     *
      * @throws JsonException
      * @throws LogicException
      */
@@ -101,7 +102,7 @@ class SlackMessage implements Arrayable
     {
         $blocks = json_decode($template, true, flags: JSON_THROW_ON_ERROR);
 
-        if(! array_key_exists('blocks', $blocks)){
+        if (! array_key_exists('blocks', $blocks)) {
             throw new LogicException('The blocks array key is missing.');
         }
 
@@ -302,7 +303,7 @@ class SlackMessage implements Arrayable
 
         $optionalFields = array_filter([
             'text' => $this->text,
-            'blocks' => ! empty($this->blocks) ? array_map(fn ($block) => $block instanceof BlockContract ?  $block->toArray() : $block, $this->blocks) : null,
+            'blocks' => ! empty($this->blocks) ? array_map(fn ($block) => $block instanceof BlockContract ? $block->toArray() : $block, $this->blocks) : null,
             'icon_emoji' => $this->icon,
             'icon_url' => $this->image,
             'metadata' => $this->metaData?->toArray(),
