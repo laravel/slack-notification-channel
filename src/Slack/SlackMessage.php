@@ -13,6 +13,7 @@ use Illuminate\Notifications\Slack\BlockKit\Blocks\SectionBlock;
 use Illuminate\Notifications\Slack\Contracts\BlockContract;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Traits\Conditionable;
+use JsonException;
 use LogicException;
 
 class SlackMessage implements Arrayable
@@ -32,7 +33,7 @@ class SlackMessage implements Arrayable
     /**
      * The message's blocks.
      *
-     * @var \Illuminate\Notifications\Slack\Contracts\BlockContract[]
+     * @var array<\Illuminate\Notifications\Slack\Contracts\BlockContract|array<mixed>>
      */
     protected array $blocks = [];
 
@@ -269,6 +270,25 @@ class SlackMessage implements Arrayable
     }
 
     /**
+     * Specify a raw Block Kit Builder JSON payload for the message.
+     *
+     * @throws JsonException
+     * @throws LogicException
+     */
+    public function usingBlockKitTemplate(string $template): self
+    {
+        $blocks = json_decode($template, true, flags: JSON_THROW_ON_ERROR);
+
+        if (! array_key_exists('blocks', $blocks)) {
+            throw new LogicException('The blocks array key is missing.');
+        }
+
+        array_push($this->blocks, ...$blocks['blocks']);
+
+        return $this;
+    }
+
+    /**
      * Get the instance as an array.
      */
     public function toArray(): array
@@ -283,7 +303,7 @@ class SlackMessage implements Arrayable
 
         $optionalFields = array_filter([
             'text' => $this->text,
-            'blocks' => ! empty($this->blocks) ? array_map(fn (BlockContract $block) => $block->toArray(), $this->blocks) : null,
+            'blocks' => ! empty($this->blocks) ? array_map(fn ($block) => $block instanceof BlockContract ? $block->toArray() : $block, $this->blocks) : null,
             'icon_emoji' => $this->icon,
             'icon_url' => $this->image,
             'metadata' => $this->metaData?->toArray(),

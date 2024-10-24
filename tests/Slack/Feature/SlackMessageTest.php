@@ -447,4 +447,130 @@ class SlackMessageTest extends TestCase
             ],
         ]);
     }
+
+    /** @test */
+    public function it_can_use_copied_block_kit_template()
+    {
+        $this->sendNotification(function (SlackMessage $message) {
+            $message->usingBlockKitTemplate(<<<'JSON'
+                {
+                    "blocks": [
+                        {
+                            "type": "header",
+                            "text": {
+                                "type": "plain_text",
+                                "text": "This is a header block",
+                                "emoji": true
+                            }
+                        },
+                        {
+                            "type": "context",
+                            "elements": [
+                                {
+                                    "type": "image",
+                                    "image_url": "https://pbs.twimg.com/profile_images/625633822235693056/lNGUneLX_400x400.jpg",
+                                    "alt_text": "cute cat"
+                                },
+                                {
+                                    "type": "mrkdwn",
+                                    "text": "*Cat* has approved this message."
+                                }
+                            ]
+                        },
+                        {
+                            "type": "image",
+                            "image_url": "https://assets3.thrillist.com/v1/image/1682388/size/tl-horizontal_main.jpg",
+                            "alt_text": "delicious tacos"
+                        }
+                    ]
+                }
+            JSON);
+        })->assertNotificationSent([
+            'channel' => '#ghost-talk',
+            'blocks' => [
+                [
+                    'type' => 'header',
+                    'text' => [
+                        'type' => 'plain_text',
+                        'text' => 'This is a header block',
+                        'emoji' => true,
+                    ],
+                ],
+                [
+                    'type' => 'context',
+                    'elements' => [
+                        [
+                            'type' => 'image',
+                            'image_url' => 'https://pbs.twimg.com/profile_images/625633822235693056/lNGUneLX_400x400.jpg',
+                            'alt_text' => 'cute cat',
+                        ],
+                        [
+                            'type' => 'mrkdwn',
+                            'text' => '*Cat* has approved this message.',
+                        ],
+                    ],
+                ],
+                [
+                    'type' => 'image',
+                    'image_url' => 'https://assets3.thrillist.com/v1/image/1682388/size/tl-horizontal_main.jpg',
+                    'alt_text' => 'delicious tacos',
+                ],
+            ],
+        ]);
+    }
+
+    /** @test */
+    public function it_can_combined_block_kit_template_and_block_contract_in_order()
+    {
+        $this->sendNotification(function (SlackMessage $message) {
+            $message->usingBlockKitTemplate(<<<'JSON'
+                {
+                    "blocks": [
+                        {
+                            "type": "header",
+                            "text": {
+                                "type": "plain_text",
+                                "text": "This is a header block",
+                                "emoji": true
+                            }
+                        }
+                    ]
+                }
+            JSON);
+
+            $message->dividerBlock();
+
+            $message->usingBlockKitTemplate(<<<'JSON'
+                {
+                    "blocks": [
+                        {
+                            "type": "image",
+                            "image_url": "https://assets3.thrillist.com/v1/image/1682388/size/tl-horizontal_main.jpg",
+                            "alt_text": "delicious tacos"
+                        }
+                    ]
+                }
+            JSON);
+        })->assertNotificationSent([
+            'channel' => '#ghost-talk',
+            'blocks' => [
+                [
+                    'type' => 'header',
+                    'text' => [
+                        'type' => 'plain_text',
+                        'text' => 'This is a header block',
+                        'emoji' => true,
+                    ],
+                ],
+                [
+                    'type' => 'divider',
+                ],
+                [
+                    'type' => 'image',
+                    'image_url' => 'https://assets3.thrillist.com/v1/image/1682388/size/tl-horizontal_main.jpg',
+                    'alt_text' => 'delicious tacos',
+                ],
+            ],
+        ]);
+    }
 }
