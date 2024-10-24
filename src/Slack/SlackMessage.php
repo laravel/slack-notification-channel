@@ -4,7 +4,6 @@ namespace Illuminate\Notifications\Slack;
 
 use Closure;
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Notifications\Slack\BlockKit\BlockBuilder;
 use Illuminate\Notifications\Slack\BlockKit\Blocks\ActionsBlock;
 use Illuminate\Notifications\Slack\BlockKit\Blocks\ContextBlock;
 use Illuminate\Notifications\Slack\BlockKit\Blocks\DividerBlock;
@@ -14,6 +13,7 @@ use Illuminate\Notifications\Slack\BlockKit\Blocks\SectionBlock;
 use Illuminate\Notifications\Slack\Contracts\BlockContract;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Traits\Conditionable;
+use JsonException;
 use LogicException;
 
 class SlackMessage implements Arrayable
@@ -33,7 +33,7 @@ class SlackMessage implements Arrayable
     /**
      * The message's blocks.
      *
-     * @var \Illuminate\Notifications\Slack\Contracts\BlockContract[]
+     * @var array<\Illuminate\Notifications\Slack\Contracts\BlockContract|array<mixed>>
      */
     protected array $blocks = [];
 
@@ -82,8 +82,6 @@ class SlackMessage implements Arrayable
      */
     protected ?bool $broadcastReply = null;
 
-    protected ?BlockBuilder $blockBuilder = null;
-
     /**
      * Set the Slack channel the message should be sent to.
      */
@@ -96,10 +94,18 @@ class SlackMessage implements Arrayable
 
     /**
      * Set the Block Kit Builder json payload.
+     * @throws JsonException
+     * @throws LogicException
      */
-    public function blockBuilder(string $payload): self
+    public function usingBlockKitTemplate(string $template): self
     {
-        $this->blockBuilder = new BlockBuilder($payload);
+        $blocks = json_decode($template, true, flags: JSON_THROW_ON_ERROR);
+
+        if(! array_key_exists('blocks', $blocks)){
+            throw new LogicException('The blocks array key is missing.');
+        }
+
+        array_push($this->blocks, ...$blocks['blocks']);
 
         return $this;
     }
@@ -286,21 +292,17 @@ class SlackMessage implements Arrayable
      */
     public function toArray(): array
     {
-        if (empty($this->blocks) && is_null($this->blockBuilder) && $this->text === null) {
+        if (empty($this->blocks) && $this->text === null) {
             throw new LogicException('Slack messages must contain at least a text message or block.');
         }
 
-        $builderBlocks = is_null($this->blockBuilder) ? [] : $this->blockBuilder->toArray();
-
-        if (count($this->blocks) > 50 || count($builderBlocks) > 50) {
+        if (count($this->blocks) > 50) {
             throw new LogicException('Slack messages can only contain up to 50 blocks.');
         }
 
         $optionalFields = array_filter([
             'text' => $this->text,
-            'blocks' => is_null($this->blockBuilder)
-                ? (! empty($this->blocks) ? array_map(fn (BlockContract $block) => $block->toArray(), $this->blocks) : null)
-                : $builderBlocks,
+            'blocks' => ! empty($this->blocks) ? array_map(fn ($block) => $block instanceof BlockContract ?  $block->toArray() : $block, $this->blocks) : null,
             'icon_emoji' => $this->icon,
             'icon_url' => $this->image,
             'metadata' => $this->metaData?->toArray(),

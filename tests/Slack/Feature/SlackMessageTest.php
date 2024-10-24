@@ -449,10 +449,10 @@ class SlackMessageTest extends TestCase
     }
 
     /** @test */
-    public function it_can_use_copied_block_kit_builder_json()
+    public function it_can_use_copied_block_kit_template()
     {
         $this->sendNotification(function (SlackMessage $message) {
-            $message->blockBuilder(<<<'JSON'
+            $message->usingBlockKitTemplate(<<<'JSON'
                 {
                     "blocks": [
                         {
@@ -518,4 +518,61 @@ class SlackMessageTest extends TestCase
             ],
         ]);
     }
+
+    /** @test */
+    public function it_can_combined_block_kit_template_and_block_contract_in_order()
+    {
+        $this->sendNotification(function (SlackMessage $message) {
+            $message->usingBlockKitTemplate(<<<'JSON'
+                {
+                    "blocks": [
+                        {
+                            "type": "header",
+                            "text": {
+                                "type": "plain_text",
+                                "text": "This is a header block",
+                                "emoji": true
+                            }
+                        }
+                    ]
+                }
+            JSON);
+
+            $message->dividerBlock();
+
+            $message->usingBlockKitTemplate(<<<'JSON'
+                {
+                    "blocks": [
+                        {
+                            "type": "image",
+                            "image_url": "https://assets3.thrillist.com/v1/image/1682388/size/tl-horizontal_main.jpg",
+                            "alt_text": "delicious tacos"
+                        }
+                    ]
+                }
+            JSON);
+        })->assertNotificationSent([
+            'channel' => '#ghost-talk',
+            'blocks' => [
+                [
+                    'type' => 'header',
+                    'text' => [
+                        'type' => 'plain_text',
+                        'text' => 'This is a header block',
+                        'emoji' => true,
+                    ],
+                ],
+                [
+                    'type' => 'divider',
+                ],
+                [
+                    'type' => 'image',
+                    'image_url' => 'https://assets3.thrillist.com/v1/image/1682388/size/tl-horizontal_main.jpg',
+                    'alt_text' => 'delicious tacos',
+                ],
+            ],
+        ]);
+    }
 }
+
+
