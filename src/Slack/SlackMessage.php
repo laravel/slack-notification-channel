@@ -93,25 +93,6 @@ class SlackMessage implements Arrayable
     }
 
     /**
-     * Set the Block Kit Builder json payload.
-     *
-     * @throws JsonException
-     * @throws LogicException
-     */
-    public function usingBlockKitTemplate(string $template): self
-    {
-        $blocks = json_decode($template, true, flags: JSON_THROW_ON_ERROR);
-
-        if (! array_key_exists('blocks', $blocks)) {
-            throw new LogicException('The blocks array key is missing.');
-        }
-
-        array_push($this->blocks, ...$blocks['blocks']);
-
-        return $this;
-    }
-
-    /**
      * Set the fallback and notification text of the Slack message.
      */
     public function text(string $text): self
@@ -284,6 +265,25 @@ class SlackMessage implements Arrayable
     public function broadcastReply(?bool $broadcastReply = true): self
     {
         $this->broadcastReply = $broadcastReply;
+
+        return $this;
+    }
+
+    /**
+     * Specify a raw Block Kit Builder JSON payload for the message.
+     *
+     * @throws JsonException
+     * @throws LogicException
+     */
+    public function usingBlockKitTemplate(string $template): self
+    {
+        $blocks = json_decode($template, true, flags: JSON_THROW_ON_ERROR);
+
+        if (! array_key_exists('blocks', $blocks)) {
+            throw new LogicException('The blocks array key is missing.');
+        }
+
+        array_push($this->blocks, ...$blocks['blocks']);
 
         return $this;
     }
