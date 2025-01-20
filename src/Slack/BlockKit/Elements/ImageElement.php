@@ -20,7 +20,7 @@ class ImageElement implements ElementContract
     /**
      * Create a new image element instance.
      */
-    public function __construct(string $url, string $altText = null)
+    public function __construct(string $url, ?string $altText = null)
     {
         $this->url = $url;
         $this->altText = $altText;

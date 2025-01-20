@@ -42,7 +42,7 @@ class ContextBlock implements BlockContract
     /**
      * Add an image element to the block.
      */
-    public function image(string $imageUrl, string $altText = null): ImageElement
+    public function image(string $imageUrl, ?string $altText = null): ImageElement
     {
         return tap(new ImageElement($imageUrl, $altText), function (ImageElement $element) {
             $this->elements[] = $element;

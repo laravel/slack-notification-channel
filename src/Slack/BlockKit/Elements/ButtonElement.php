@@ -79,7 +79,7 @@ class ButtonElement implements ElementContract
     /**
      * Create a new button element instance.
      */
-    public function __construct(string $text, Closure $callback = null)
+    public function __construct(string $text, ?Closure $callback = null)
     {
         $this->text = new PlainTextOnlyTextObject($text, 75);
 
@@ -155,7 +155,7 @@ class ButtonElement implements ElementContract
     /**
      * Set the confirm object for the button.
      */
-    public function confirm(string $text, Closure $callback = null): ConfirmObject
+    public function confirm(string $text, ?Closure $callback = null): ConfirmObject
     {
         $this->confirm = $confirm = new ConfirmObject($text);
 

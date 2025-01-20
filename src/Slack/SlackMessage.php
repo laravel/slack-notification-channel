@@ -139,7 +139,7 @@ class SlackMessage implements Arrayable
     /**
      * Add a new Header block to the message.
      */
-    public function headerBlock(string $text, Closure $callback = null): self
+    public function headerBlock(string $text, ?Closure $callback = null): self
     {
         $this->blocks[] = new HeaderBlock($text, $callback);
 
@@ -149,7 +149,7 @@ class SlackMessage implements Arrayable
     /**
      * Add a new Image block to the message.
      */
-    public function imageBlock(string $url, Closure|string $altText = null, Closure $callback = null): self
+    public function imageBlock(string $url, Closure|string|null $altText = null, ?Closure $callback = null): self
     {
         if ($altText instanceof Closure) {
             $callback = $altText;

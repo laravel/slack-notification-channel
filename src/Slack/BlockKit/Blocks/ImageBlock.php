@@ -42,7 +42,7 @@ class ImageBlock implements BlockContract
     /**
      * Create a new image block instance.
      */
-    public function __construct(string $url, string $altText = null)
+    public function __construct(string $url, ?string $altText = null)
     {
         if (strlen($url) > 3000) {
             throw new InvalidArgumentException('Maximum length for the url field is 3000 characters.');

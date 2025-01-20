@@ -21,7 +21,7 @@ class SlackRoute
     /**
      * Create a new Slack route instance.
      */
-    public function __construct(string $channel = null, string $token = null)
+    public function __construct(?string $channel = null, ?string $token = null)
     {
         $this->channel = $channel;
         $this->token = $token;
@@ -30,7 +30,7 @@ class SlackRoute
     /**
      * Fluently create a new Slack route instance.
      */
-    public static function make(string $channel = null, string $token = null): self
+    public static function make(?string $channel = null, ?string $token = null): self
     {
         return new self($channel, $token);
     }

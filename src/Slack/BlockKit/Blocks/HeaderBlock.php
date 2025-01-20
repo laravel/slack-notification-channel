@@ -28,7 +28,7 @@ class HeaderBlock implements BlockContract
     /**
      * Create a new header block instance.
      */
-    public function __construct(string $text, Closure $callback = null)
+    public function __construct(string $text, ?Closure $callback = null)
     {
         $this->text = $object = new PlainTextOnlyTextObject($text, 150);
 

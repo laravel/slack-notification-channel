@@ -10,7 +10,7 @@ class SlackChannelTestNotification extends Notification
 {
     private Closure $callback;
 
-    public function __construct(Closure $callback = null)
+    public function __construct(?Closure $callback = null)
     {
         $this->callback = $callback ?? function () {
             //
