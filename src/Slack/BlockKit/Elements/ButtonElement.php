@@ -5,12 +5,14 @@ namespace Illuminate\Notifications\Slack\BlockKit\Elements;
 use Closure;
 use Illuminate\Notifications\Slack\BlockKit\Composites\ConfirmObject;
 use Illuminate\Notifications\Slack\BlockKit\Composites\PlainTextOnlyTextObject;
+use Illuminate\Notifications\Slack\BlockKit\Elements\Traits\GeneratesDefaultIds;
 use Illuminate\Notifications\Slack\Contracts\ElementContract;
-use Illuminate\Support\Str;
 use InvalidArgumentException;
 
 class ButtonElement implements ElementContract
 {
+    use GeneratesDefaultIds;
+
     /**
      * A text object that defines the button's text.
      *
@@ -83,7 +85,7 @@ class ButtonElement implements ElementContract
     {
         $this->text = new PlainTextOnlyTextObject($text, 75);
 
-        $this->id('button_'.Str::lower(Str::slug(substr($text, 0, 248))));
+        $this->id($this->resolveDefaultId('button_', $text));
 
         if ($callback) {
             $callback($this->text);

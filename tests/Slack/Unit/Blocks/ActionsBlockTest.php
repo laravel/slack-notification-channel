@@ -119,4 +119,22 @@ class ActionsBlockTest extends TestCase
             ],
         ], $block->toArray());
     }
+
+    /** @test */
+    public function it_can_add_selects(): void
+    {
+        $block = new ActionsBlock();
+        $block->staticSelect('example select')->id('select_id');
+
+        $this->assertSame([
+            'type' => 'actions',
+            'elements' => [
+                [
+                    'type' => 'static_select',
+                    'options' => [],
+                    'action_id' => 'select_id',
+                ],
+            ],
+        ], $block->toArray());
+    }
 }
