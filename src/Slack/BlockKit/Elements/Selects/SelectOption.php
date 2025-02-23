@@ -9,40 +9,43 @@ use Illuminate\Support\Str;
 class SelectOption implements Arrayable
 {
     /**
-     * Text of the options.
+     * The option text.
      */
-    private TextObject $text;
+    protected TextObject $text;
 
     /**
-     * Value of the option.
+     * The option value.
      */
-    private string $value;
+    protected string $value;
 
-    public function __construct(string $text, $value)
+    /**
+     * Create a new select option instance.
+     */
+    public function __construct(string $text, mixed $value)
     {
         $this->text($text);
         $this->value($value);
     }
 
     /**
-     * Sets the select text value.
+     * Set the option's text value.
      */
-    private function text(string $text): void
+    protected function text(string $text): void
     {
         $this->text = new TextObject($text, 75);
     }
 
     /**
-     * Sets the select value.
+     * Set the option's value.
      */
-    private function value($value): void
+    protected function value($value): void
     {
-        $value = Str::lower($value);
-        $value = preg_replace('/[^a-z0-9_\-.]/', '', $value);
-
-        $this->value = $value;
+        $this->value = preg_replace('/[^a-z0-9_\-.]/', '', Str::lower($value));
     }
 
+    /**
+     * Convert the select option to an array.
+     */
     public function toArray(): array
     {
         return [

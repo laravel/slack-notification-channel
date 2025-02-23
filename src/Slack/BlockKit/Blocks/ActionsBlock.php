@@ -50,7 +50,7 @@ class ActionsBlock implements BlockContract
     }
 
     /**
-     * Add static select to the block.
+     * Add a static select menu to the block.
      */
     public function staticSelect(string $text): StaticSelectElement
     {

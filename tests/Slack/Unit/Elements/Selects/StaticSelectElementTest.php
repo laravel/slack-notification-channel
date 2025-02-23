@@ -42,7 +42,7 @@ class StaticSelectElementTest extends TestCase
     {
         $select = new StaticSelectElement();
         $select->id('enable_focus');
-        $select->focusOnLoad(true);
+        $select->focus(true);
 
         $this->assertEquals([
             'type' => 'static_select',
@@ -124,7 +124,7 @@ class StaticSelectElementTest extends TestCase
     {
         $select = new StaticSelectElement();
         $select->id('disable_focus');
-        $select->focusOnLoad(false);
+        $select->focus(false);
 
         $this->assertEquals([
             'type' => 'static_select',

@@ -6,13 +6,6 @@ use Illuminate\Notifications\Slack\BlockKit\Composites\PlainTextOnlyTextObject;
 use Illuminate\Notifications\Slack\Contracts\AccessoryContract;
 use InvalidArgumentException;
 
-/**
- * Abstract class representing a base structure for select elements.
- *
- * The class provides functionality for defining interaction identifiers,
- * placeholders, and focus behavior. It also enforces subclasses to
- * implement additional fields specific to their select type.
- */
 abstract class SelectElement implements AccessoryContract
 {
     /**
@@ -70,9 +63,9 @@ abstract class SelectElement implements AccessoryContract
     /**
      * Set whether the element should automatically gain focus when the view loads.
      */
-    public function focusOnLoad(bool $focusOnLoad = true): self
+    public function focus(bool $focus = true): self
     {
-        $this->focusOnLoad = $focusOnLoad;
+        $this->focusOnLoad = $focus;
 
         return $this;
     }
@@ -82,25 +75,10 @@ abstract class SelectElement implements AccessoryContract
      */
     public function toArray(): array
     {
-        $allFields = array_merge($this->extensionFields(), [
+        return array_filter([
             'action_id' => $this->actionId,
             'placeholder' => $this->placeholder?->toArray(),
             'focus_on_load' => $this->focusOnLoad,
-        ]);
-
-        return array_filter(
-            $allFields,
-            static fn ($value): bool => $value !== null,
-        );
+        ], static fn ($value): bool => $value !== null);
     }
-
-    /**
-     * Get additional fields specific to the child class as an associative array.
-     *
-     * This method should be implemented in subclasses to provide additional
-     * fields required by the specific select element type.
-     *
-     * @return array The additional fields for the select element.
-     */
-    abstract protected function extensionFields(): array;
 }

@@ -5,13 +5,13 @@ namespace Illuminate\Notifications\Slack\BlockKit\Elements;
 use Closure;
 use Illuminate\Notifications\Slack\BlockKit\Composites\ConfirmObject;
 use Illuminate\Notifications\Slack\BlockKit\Composites\PlainTextOnlyTextObject;
-use Illuminate\Notifications\Slack\BlockKit\Elements\Traits\DefaultIdTrait;
+use Illuminate\Notifications\Slack\BlockKit\Elements\Traits\GeneratesDefaultIds;
 use Illuminate\Notifications\Slack\Contracts\ElementContract;
 use InvalidArgumentException;
 
 class ButtonElement implements ElementContract
 {
-    use DefaultIdTrait;
+    use GeneratesDefaultIds;
 
     /**
      * A text object that defines the button's text.
