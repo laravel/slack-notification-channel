@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.4.4...3.x)
+## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.5.0...3.x)
+
+## [v3.5.0](https://github.com/laravel/slack-notification-channel/compare/v3.4.4...v3.5.0) - 2025-02-23
+
+* Add select by [@Huholoman](https://github.com/Huholoman) in https://github.com/laravel/slack-notification-channel/pull/103
 
 ## [v3.4.4](https://github.com/laravel/slack-notification-channel/compare/v3.4.3...v3.4.4) - 2025-01-24
 
