@@ -83,6 +83,26 @@ class SlackMessage implements Arrayable
     protected ?bool $broadcastReply = null;
 
     /**
+     * Indicates if the message should replace the original message.
+     */
+    protected ?bool $replaceOriginal = null;
+
+    public function __construct()
+    {
+        $this->mrkdwn = true;
+    }
+
+    /**
+     * Set the message to replace the original message.
+     */
+    public function setReplaceOriginal($value = true): self
+    {
+        $this->replaceOriginal = $value;
+
+        return $this;
+    }
+
+    /**
      * Set the Slack channel the message should be sent to.
      */
     public function to(string $channel): self
