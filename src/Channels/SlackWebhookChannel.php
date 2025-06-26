@@ -48,10 +48,10 @@ class SlackWebhookChannel
     /**
      * Build up a JSON payload for the Slack webhook.
      *
-     * @param  LegacySlackMessage|SlackMessage  $message
+     * @param  SlackMessage|LegacySlackMessage  $message
      * @return array
      */
-    public function buildJsonPayload(LegacySlackMessage|SlackMessage $message)
+    public function buildJsonPayload(SlackMessage|LegacySlackMessage $message)
     {
         if ($message instanceof SlackMessage) {
             return ['json' => $message->toArray()];
