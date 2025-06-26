@@ -4,6 +4,12 @@ namespace Illuminate\Notifications\Messages;
 
 use Closure;
 
+/**
+ * Legacy Slack message with attachments.
+ *
+ * @link https://api.slack.com/legacy/outmoded-messaging
+ * @see  \Illuminate\Notifications\Slack\SlackMessage
+ */
 class SlackMessage
 {
     /**
