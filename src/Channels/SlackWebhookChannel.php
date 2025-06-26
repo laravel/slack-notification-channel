@@ -5,8 +5,9 @@ namespace Illuminate\Notifications\Channels;
 use GuzzleHttp\Client as HttpClient;
 use Illuminate\Notifications\Messages\SlackAttachment;
 use Illuminate\Notifications\Messages\SlackAttachmentField;
-use Illuminate\Notifications\Messages\SlackMessage;
+use Illuminate\Notifications\Messages\SlackMessage as LegacySlackMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Notifications\Slack\SlackMessage;
 
 class SlackWebhookChannel
 {
@@ -47,10 +48,15 @@ class SlackWebhookChannel
     /**
      * Build up a JSON payload for the Slack webhook.
      *
+     * @param  LegacySlackMessage|SlackMessage  $message
      * @return array
      */
-    public function buildJsonPayload(SlackMessage $message)
+    public function buildJsonPayload(LegacySlackMessage|SlackMessage $message)
     {
+        if ($message instanceof SlackMessage) {
+            return ['json' => $message->toArray()];
+        }
+
         $optionalFields = array_filter([
             'channel' => data_get($message, 'channel'),
             'icon_emoji' => data_get($message, 'icon'),
@@ -74,7 +80,7 @@ class SlackWebhookChannel
      *
      * @return array
      */
-    protected function attachments(SlackMessage $message)
+    protected function attachments(LegacySlackMessage $message)
     {
         return collect($message->attachments)->map(function ($attachment) use ($message) {
             return array_filter([
