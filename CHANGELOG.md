@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.5.0...3.x)
+## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.6.0...3.x)
+
+## [v3.6.0](https://github.com/laravel/slack-notification-channel/compare/v3.5.0...v3.6.0) - 2025-06-26
+
+* Support sending the new BlockKit message via SlackWebhookChannel by [@SyuTingSong](https://github.com/SyuTingSong) in https://github.com/laravel/slack-notification-channel/pull/106
 
 ## [v3.5.0](https://github.com/laravel/slack-notification-channel/compare/v3.4.4...v3.5.0) - 2025-02-23
 
