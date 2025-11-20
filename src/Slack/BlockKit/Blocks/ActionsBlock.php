@@ -61,7 +61,7 @@ class ActionsBlock implements BlockContract
     }
 
     /**
-     * Add a Users Select menu to the block.
+     * Add a users select menu to the block.
      */
     public function usersSelect(string $text): UsersSelectElement
     {

@@ -22,7 +22,7 @@ class UsersSelectElement extends SelectElement
     }
 
     /**
-     * Set the default selected users for the select element.
+     * Specify the ID of the user that should be selected by default.
      */
     public function initialUser(string $value): self
     {
