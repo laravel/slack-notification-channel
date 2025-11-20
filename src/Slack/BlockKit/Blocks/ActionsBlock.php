@@ -5,6 +5,7 @@ namespace Illuminate\Notifications\Slack\BlockKit\Blocks;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Notifications\Slack\BlockKit\Elements\ButtonElement;
 use Illuminate\Notifications\Slack\BlockKit\Elements\Selects\StaticSelectElement;
+use Illuminate\Notifications\Slack\BlockKit\Elements\Selects\UsersSelectElement;
 use Illuminate\Notifications\Slack\Contracts\BlockContract;
 use InvalidArgumentException;
 use LogicException;
@@ -55,6 +56,16 @@ class ActionsBlock implements BlockContract
     public function staticSelect(string $text): StaticSelectElement
     {
         return tap(new StaticSelectElement($text), function (StaticSelectElement $select) {
+            $this->elements[] = $select;
+        });
+    }
+
+    /**
+     * Add a users select menu to the block.
+     */
+    public function usersSelect(string $text): UsersSelectElement
+    {
+        return tap(new UsersSelectElement($text), function (UsersSelectElement $select) {
             $this->elements[] = $select;
         });
     }
