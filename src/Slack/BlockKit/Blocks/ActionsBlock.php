@@ -60,6 +60,16 @@ class ActionsBlock implements BlockContract
     }
 
     /**
+     * Add a Users Select menu to the block.
+     */
+    public function usersSelect(string $text): UsersSelectElement
+    {
+        return tap(new UsersSelectElement($text), function (UsersSelectElement $select) {
+            $this->elements[] = $select;
+        });
+    }
+    
+    /**
      * Get the instance as an array.
      */
     public function toArray(): array
