@@ -5,6 +5,7 @@ namespace Illuminate\Notifications\Slack\BlockKit\Blocks;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Notifications\Slack\BlockKit\Elements\ButtonElement;
 use Illuminate\Notifications\Slack\BlockKit\Elements\Selects\StaticSelectElement;
+use Illuminate\Notifications\Slack\BlockKit\Elements\Selects\UsersSelectElement;
 use Illuminate\Notifications\Slack\Contracts\BlockContract;
 use InvalidArgumentException;
 use LogicException;
