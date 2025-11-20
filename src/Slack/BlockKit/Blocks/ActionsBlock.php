@@ -69,7 +69,7 @@ class ActionsBlock implements BlockContract
             $this->elements[] = $select;
         });
     }
-    
+
     /**
      * Get the instance as an array.
      */
