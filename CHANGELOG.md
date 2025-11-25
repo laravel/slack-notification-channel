@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.6.0...3.x)
+## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.7.0...3.x)
+
+## [v3.7.0](https://github.com/laravel/slack-notification-channel/compare/v3.6.0...v3.7.0) - 2025-11-20
+
+* Add Users Select box by [@barryvdh](https://github.com/barryvdh) in https://github.com/laravel/slack-notification-channel/pull/108
 
 ## [v3.6.0](https://github.com/laravel/slack-notification-channel/compare/v3.5.0...v3.6.0) - 2025-06-26
 
