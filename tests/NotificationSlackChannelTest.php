@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Support\Carbon;
 use Illuminate\Tests\Notifications\Slack\SlackChannelTestNotifiable;
 use Mockery as m;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class NotificationSlackChannelTest extends TestCase
@@ -19,9 +20,8 @@ class NotificationSlackChannelTest extends TestCase
         m::close();
     }
 
-    /**
-     * @dataProvider payloadDataProvider
-     */
+    /** @dataProvider payloadDataProvider */
+    #[DataProvider('payloadDataProvider')]
     public function testCorrectPayloadIsSentToSlack(Notification $notification, array $payload)
     {
         $guzzleHttp = m::mock(Client::class);

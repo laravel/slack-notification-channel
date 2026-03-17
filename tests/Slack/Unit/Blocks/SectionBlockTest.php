@@ -9,8 +9,7 @@ use LogicException;
 
 class SectionBlockTest extends TestCase
 {
-    /** @test */
-    public function it_is_arrayable(): void
+    public function test_it_is_arrayable(): void
     {
         $block = new SectionBlock();
         $block->text('Location: 123 Main Street, New York, NY 10010');
@@ -24,8 +23,7 @@ class SectionBlockTest extends TestCase
         ], $block->toArray());
     }
 
-    /** @test */
-    public function it_throws_an_exception_when_no_text_or_field_was_provided(): void
+    public function test_it_throws_an_exception_when_no_text_or_field_was_provided(): void
     {
         $this->expectException(LogicException::class);
         $this->expectExceptionMessage('A section requires at least one block, or the text to be set.');
@@ -35,8 +33,7 @@ class SectionBlockTest extends TestCase
         $block->toArray();
     }
 
-    /** @test */
-    public function the_text_has_a_minimum_length_of_one_character(): void
+    public function test_the_text_has_a_minimum_length_of_one_character(): void
     {
         $this->expectException(LogicException::class);
         $this->expectExceptionMessage('Text must be at least 1 character(s) long.');
@@ -47,8 +44,7 @@ class SectionBlockTest extends TestCase
         $block->toArray();
     }
 
-    /** @test */
-    public function the_text_cannot_exceed_3000_characters(): void
+    public function test_the_text_cannot_exceed_3000_characters(): void
     {
         $block = new SectionBlock();
         $block->text(str_repeat('a', 3001));
@@ -62,8 +58,7 @@ class SectionBlockTest extends TestCase
         ], $block->toArray());
     }
 
-    /** @test */
-    public function the_text_can_be_customized(): void
+    public function test_the_text_can_be_customized(): void
     {
         $block = new SectionBlock();
         $block->text('Location: 123 Main Street, New York, NY 10010')->markdown();
@@ -77,8 +72,7 @@ class SectionBlockTest extends TestCase
         ], $block->toArray());
     }
 
-    /** @test */
-    public function it_does_not_allow_more_than_ten_fields(): void
+    public function test_it_does_not_allow_more_than_ten_fields(): void
     {
         $this->expectException(LogicException::class);
         $this->expectExceptionMessage('There is a maximum of 10 fields in each section block.');
@@ -91,8 +85,7 @@ class SectionBlockTest extends TestCase
         $block->toArray();
     }
 
-    /** @test */
-    public function a_field_cannot_exceed_2000_characters(): void
+    public function test_a_field_cannot_exceed_2000_characters(): void
     {
         $block = new SectionBlock();
         $block->field(str_repeat('a', 2001));
@@ -108,8 +101,7 @@ class SectionBlockTest extends TestCase
         ], $block->toArray());
     }
 
-    /** @test */
-    public function a_field_can_be_customized(): void
+    public function test_a_field_can_be_customized(): void
     {
         $block = new SectionBlock();
         $block->field('Location: 123 Main Street, New York, NY 10010')->markdown();
@@ -125,8 +117,7 @@ class SectionBlockTest extends TestCase
         ], $block->toArray());
     }
 
-    /** @test */
-    public function it_can_manually_specify_the_block_id_field(): void
+    public function test_it_can_manually_specify_the_block_id_field(): void
     {
         $block = new SectionBlock();
         $block->text('Location: 123 Main Street, New York, NY 10010');
@@ -142,8 +133,7 @@ class SectionBlockTest extends TestCase
         ], $block->toArray());
     }
 
-    /** @test */
-    public function the_block_id_field_cannot_exceed_255_characters(): void
+    public function test_the_block_id_field_cannot_exceed_255_characters(): void
     {
         $this->expectException(LogicException::class);
         $this->expectExceptionMessage('Maximum length for the block_id field is 255 characters.');
@@ -155,8 +145,7 @@ class SectionBlockTest extends TestCase
         $block->toArray();
     }
 
-    /** @test */
-    public function it_can_specify_an_accessory_element(): void
+    public function test_it_can_specify_an_accessory_element(): void
     {
         $block = new SectionBlock();
         $block->text('Location: 123 Main Street, New York, NY 10010');

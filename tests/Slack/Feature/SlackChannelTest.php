@@ -14,8 +14,7 @@ use LogicException;
 
 class SlackChannelTest extends TestCase
 {
-    /** @test */
-    public function the_route_notification_for_slack_method_describes_the_channel_using_a_string(): void
+    public function test_the_route_notification_for_slack_method_describes_the_channel_using_a_string(): void
     {
         Config::set('services.slack.notifications.bot_user_oauth_token', 'config-set-token');
 
@@ -39,8 +38,7 @@ class SlackChannelTest extends TestCase
         });
     }
 
-    /** @test */
-    public function the_route_notification_for_slack_method_describes_the_channel_using_a_slack_route_instance(): void
+    public function test_the_route_notification_for_slack_method_describes_the_channel_using_a_slack_route_instance(): void
     {
         Config::set('services.slack.notifications.bot_user_oauth_token', 'config-set-token');
 
@@ -64,8 +62,7 @@ class SlackChannelTest extends TestCase
         });
     }
 
-    /** @test */
-    public function the_route_notification_for_slack_method_describes_the_channel_and_token_using_a_slack_route_instance(): void
+    public function test_the_route_notification_for_slack_method_describes_the_channel_and_token_using_a_slack_route_instance(): void
     {
         Config::set('services.slack.notifications.bot_user_oauth_token', 'config-set-token');
 
@@ -89,8 +86,7 @@ class SlackChannelTest extends TestCase
         });
     }
 
-    /** @test */
-    public function the_route_notification_for_slack_method_only_describes_the_token_using_a_slack_route_instance(): void
+    public function test_the_route_notification_for_slack_method_only_describes_the_token_using_a_slack_route_instance(): void
     {
         Config::set('services.slack.notifications.bot_user_oauth_token', 'ignored-token');
 
@@ -114,8 +110,7 @@ class SlackChannelTest extends TestCase
         });
     }
 
-    /** @test */
-    public function the_route_notification_for_slack_method_does_not_describe_anything(): void
+    public function test_the_route_notification_for_slack_method_does_not_describe_anything(): void
     {
         Config::set('services.slack.notifications.bot_user_oauth_token', 'config-set-token');
         Config::set('services.slack.notifications.channel', 'config-set-channel');
@@ -140,8 +135,7 @@ class SlackChannelTest extends TestCase
         });
     }
 
-    /** @test */
-    public function it_prefers_the_notification_defined_channel_over_the_config_defined_channel(): void
+    public function test_it_prefers_the_notification_defined_channel_over_the_config_defined_channel(): void
     {
         Config::set('services.slack.notifications.bot_user_oauth_token', 'config-set-token');
         Config::set('services.slack.notifications.channel', 'config-set-channel');
@@ -166,8 +160,7 @@ class SlackChannelTest extends TestCase
         });
     }
 
-    /** @test */
-    public function it_throws_an_exception_when_the_route_notification_for_slack_method_does_not_provide_a_channel_and_the_notification_and_config_do_not_either(): void
+    public function test_it_throws_an_exception_when_the_route_notification_for_slack_method_does_not_provide_a_channel_and_the_notification_and_config_do_not_either(): void
     {
         Config::set('services.slack.notifications.bot_user_oauth_token', 'config-set-token');
 
@@ -182,8 +175,7 @@ class SlackChannelTest extends TestCase
         );
     }
 
-    /** @test */
-    public function it_throws_an_exception_when_the_route_notification_for_slack_method_does_not_provide_a_token_and_the_config_does_not_either(): void
+    public function test_it_throws_an_exception_when_the_route_notification_for_slack_method_does_not_provide_a_token_and_the_config_does_not_either(): void
     {
         $this->expectException(LogicException::class);
         $this->expectExceptionMessage('Slack API authentication token is not set.');

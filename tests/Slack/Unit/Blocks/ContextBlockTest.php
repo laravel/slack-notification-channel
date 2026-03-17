@@ -8,8 +8,7 @@ use LogicException;
 
 class ContextBlockTest extends TestCase
 {
-    /** @test */
-    public function it_is_arrayable(): void
+    public function test_it_is_arrayable(): void
     {
         $block = new ContextBlock();
         $block->text('Location: 123 Main Street, New York, NY 10010');
@@ -25,8 +24,7 @@ class ContextBlockTest extends TestCase
         ], $block->toArray());
     }
 
-    /** @test */
-    public function it_requires_at_least_one_element(): void
+    public function test_it_requires_at_least_one_element(): void
     {
         $this->expectException(LogicException::class);
         $this->expectExceptionMessage('There must be at least one element in each context block.');
@@ -35,8 +33,7 @@ class ContextBlockTest extends TestCase
         $block->toArray();
     }
 
-    /** @test */
-    public function it_does_not_allow_more_than_ten_elements(): void
+    public function test_it_does_not_allow_more_than_ten_elements(): void
     {
         $this->expectException(LogicException::class);
         $this->expectExceptionMessage('There is a maximum of 10 elements in each context block.');
@@ -49,8 +46,7 @@ class ContextBlockTest extends TestCase
         $block->toArray();
     }
 
-    /** @test */
-    public function it_can_manually_specify_the_block_id_field(): void
+    public function test_it_can_manually_specify_the_block_id_field(): void
     {
         $block = new ContextBlock();
         $block->text('Location: 123 Main Street, New York, NY 10010');
@@ -68,8 +64,7 @@ class ContextBlockTest extends TestCase
         ], $block->toArray());
     }
 
-    /** @test */
-    public function the_block_id_field_cannot_exceed_255_characters(): void
+    public function test_the_block_id_field_cannot_exceed_255_characters(): void
     {
         $this->expectException(LogicException::class);
         $this->expectExceptionMessage('Maximum length for the block_id field is 255 characters.');
@@ -81,8 +76,7 @@ class ContextBlockTest extends TestCase
         $block->toArray();
     }
 
-    /** @test */
-    public function it_can_add_image_blocks(): void
+    public function test_it_can_add_image_blocks(): void
     {
         $block = new ContextBlock();
         $block->image('https://image.freepik.com/free-photo/red-drawing-pin_1156-445.jpg')->alt('images');
@@ -105,8 +99,7 @@ class ContextBlockTest extends TestCase
         ], $block->toArray());
     }
 
-    /** @test */
-    public function it_can_add_text_blocks(): void
+    public function test_it_can_add_text_blocks(): void
     {
         $block = new ContextBlock();
         $block->text('Location: 123 Main Street, New York, NY 10010');

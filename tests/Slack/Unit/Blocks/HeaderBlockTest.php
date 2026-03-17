@@ -8,8 +8,7 @@ use LogicException;
 
 class HeaderBlockTest extends TestCase
 {
-    /** @test */
-    public function it_is_arrayable(): void
+    public function test_it_is_arrayable(): void
     {
         $block = new HeaderBlock('Budget Performance');
 
@@ -22,8 +21,7 @@ class HeaderBlockTest extends TestCase
         ], $block->toArray());
     }
 
-    /** @test */
-    public function the_text_heading_cannot_exceed_150_characters(): void
+    public function test_the_text_heading_cannot_exceed_150_characters(): void
     {
         $blockA = new HeaderBlock(str_repeat('a', 151));
         $blockB = new HeaderBlock(str_repeat('b', 150));
@@ -45,8 +43,7 @@ class HeaderBlockTest extends TestCase
         ], $blockB->toArray());
     }
 
-    /** @test */
-    public function it_can_manually_specify_the_block_id_field(): void
+    public function test_it_can_manually_specify_the_block_id_field(): void
     {
         $block = new HeaderBlock('Budget Performance');
         $block->id('header1');
@@ -61,8 +58,7 @@ class HeaderBlockTest extends TestCase
         ], $block->toArray());
     }
 
-    /** @test */
-    public function the_block_id_field_cannot_exceed_255_characters(): void
+    public function test_the_block_id_field_cannot_exceed_255_characters(): void
     {
         $this->expectException(LogicException::class);
         $this->expectExceptionMessage('Maximum length for the block_id field is 255 characters.');

@@ -7,7 +7,6 @@ use Illuminate\Tests\Notifications\Slack\TestCase;
 
 class StaticSelectElementTest extends TestCase
 {
-    /** @test */
     public function test_it_can_add_initial_option(): void
     {
         $select = new StaticSelectElement();
@@ -37,7 +36,6 @@ class StaticSelectElementTest extends TestCase
         ], $select->toArray());
     }
 
-    /** @test */
     public function test_it_can_enable_focus_on_load(): void
     {
         $select = new StaticSelectElement();
@@ -52,7 +50,6 @@ class StaticSelectElementTest extends TestCase
         ], $select->toArray());
     }
 
-    /** @test */
     public function test_it_rejects_invalid_placeholder_text(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -63,7 +60,6 @@ class StaticSelectElementTest extends TestCase
         $select->placeholder('');
     }
 
-    /** @test */
     public function test_it_can_add_multiple_options(): void
     {
         $select = new StaticSelectElement();
@@ -101,7 +97,6 @@ class StaticSelectElementTest extends TestCase
         ], $select->toArray());
     }
 
-    /** @test */
     public function test_it_can_set_placeholder(): void
     {
         $select = new StaticSelectElement();
@@ -119,7 +114,6 @@ class StaticSelectElementTest extends TestCase
         ], $select->toArray());
     }
 
-    /** @test */
     public function test_it_can_disable_focus_on_load(): void
     {
         $select = new StaticSelectElement();
@@ -134,7 +128,6 @@ class StaticSelectElementTest extends TestCase
         ], $select->toArray());
     }
 
-    /** @test */
     public function test_it_rejects_initial_option_when_no_options_available(): void
     {
         $this->expectException(\LogicException::class);
