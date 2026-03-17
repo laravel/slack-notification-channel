@@ -1,6 +1,10 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.7.0...3.x)
+## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.8.0...3.x)
+
+## [v3.8.0](https://github.com/laravel/slack-notification-channel/compare/v3.7.0...v3.8.0) - 2026-03-17
+
+* Support Laravel 13 by [@jackbayliss](https://github.com/jackbayliss) in https://github.com/laravel/slack-notification-channel/pull/109
 
 ## [v3.7.0](https://github.com/laravel/slack-notification-channel/compare/v3.6.0...v3.7.0) - 2025-11-20
 
