@@ -8,8 +8,7 @@ use LogicException;
 
 class ActionsBlockTest extends TestCase
 {
-    /** @test */
-    public function it_is_arrayable(): void
+    public function test_it_is_arrayable(): void
     {
         $block = new ActionsBlock();
         $block->button('Example Button');
@@ -29,8 +28,7 @@ class ActionsBlockTest extends TestCase
         ], $block->toArray());
     }
 
-    /** @test */
-    public function it_requires_at_least_one_element(): void
+    public function test_it_requires_at_least_one_element(): void
     {
         $this->expectException(LogicException::class);
         $this->expectExceptionMessage('There must be at least one element in each actions block.');
@@ -39,8 +37,7 @@ class ActionsBlockTest extends TestCase
         $block->toArray();
     }
 
-    /** @test */
-    public function it_does_not_allow_more_than_twenty_five_elements(): void
+    public function test_it_does_not_allow_more_than_twenty_five_elements(): void
     {
         $this->expectException(LogicException::class);
         $this->expectExceptionMessage('There is a maximum of 25 elements in each actions block.');
@@ -53,8 +50,7 @@ class ActionsBlockTest extends TestCase
         $block->toArray();
     }
 
-    /** @test */
-    public function it_can_manually_specify_the_block_id_field(): void
+    public function test_it_can_manually_specify_the_block_id_field(): void
     {
         $block = new ActionsBlock();
         $block->button('Example Button');
@@ -76,8 +72,7 @@ class ActionsBlockTest extends TestCase
         ], $block->toArray());
     }
 
-    /** @test */
-    public function the_block_id_field_cannot_exceed_255_characters(): void
+    public function test_the_block_id_field_cannot_exceed_255_characters(): void
     {
         $this->expectException(LogicException::class);
         $this->expectExceptionMessage('Maximum length for the block_id field is 255 characters.');
@@ -89,8 +84,7 @@ class ActionsBlockTest extends TestCase
         $block->toArray();
     }
 
-    /** @test */
-    public function it_can_add_buttons(): void
+    public function test_it_can_add_buttons(): void
     {
         $block = new ActionsBlock();
         $block->button('Example Button');
@@ -120,8 +114,7 @@ class ActionsBlockTest extends TestCase
         ], $block->toArray());
     }
 
-    /** @test */
-    public function it_can_add_selects(): void
+    public function test_it_can_add_selects(): void
     {
         $block = new ActionsBlock();
         $block->staticSelect('example select')->id('select_id');

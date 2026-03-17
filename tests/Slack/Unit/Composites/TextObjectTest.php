@@ -8,8 +8,7 @@ use LogicException;
 
 class TextObjectTest extends TestCase
 {
-    /** @test */
-    public function it_is_arrayable(): void
+    public function test_it_is_arrayable(): void
     {
         $object = new TextObject('A message *with some bold text* and _some italicized text_.');
 
@@ -19,8 +18,7 @@ class TextObjectTest extends TestCase
         ], $object->toArray());
     }
 
-    /** @test */
-    public function it_can_be_a_markdown_text_field(): void
+    public function test_it_can_be_a_markdown_text_field(): void
     {
         $object = new TextObject('A message *with some bold text* and _some italicized text_.');
         $object->markdown();
@@ -31,8 +29,7 @@ class TextObjectTest extends TestCase
         ], $object->toArray());
     }
 
-    /** @test */
-    public function the_text_has_a_minimum_length_of_1_character(): void
+    public function test_the_text_has_a_minimum_length_of_1_character(): void
     {
         $this->expectException(LogicException::class);
         $this->expectExceptionMessage('Text must be at least 1 character(s) long.');
@@ -40,8 +37,7 @@ class TextObjectTest extends TestCase
         new TextObject('');
     }
 
-    /** @test */
-    public function the_text_gets_truncated_when_it_exceeds_3000_characters(): void
+    public function test_the_text_gets_truncated_when_it_exceeds_3000_characters(): void
     {
         $object = new TextObject(str_repeat('a', 3001));
 
@@ -51,8 +47,7 @@ class TextObjectTest extends TestCase
         ], $object->toArray());
     }
 
-    /** @test */
-    public function it_can_indicate_that_emojis_should_be_escaped_into_the_colon_emoji_format(): void
+    public function test_it_can_indicate_that_emojis_should_be_escaped_into_the_colon_emoji_format(): void
     {
         $object = new TextObject('Spooky time! 👻');
         $object->emoji();
@@ -64,8 +59,7 @@ class TextObjectTest extends TestCase
         ], $object->toArray());
     }
 
-    /** @test */
-    public function it_cannot_indicate_that_emojis_should_be_escaped_into_the_colon_emoji_format_when_using_markdown(): void
+    public function test_it_cannot_indicate_that_emojis_should_be_escaped_into_the_colon_emoji_format_when_using_markdown(): void
     {
         $object = new TextObject('Spooky time! 👻');
         $object->markdown()->emoji();
@@ -76,8 +70,7 @@ class TextObjectTest extends TestCase
         ], $object->toArray());
     }
 
-    /** @test */
-    public function it_can_indicate_that_auto_conversion_into_clickable_anchors_should_be_skipped(): void
+    public function test_it_can_indicate_that_auto_conversion_into_clickable_anchors_should_be_skipped(): void
     {
         $object = new TextObject('A message *with some bold text* and _some italicized text_.');
         $object->markdown()->verbatim();
@@ -89,8 +82,7 @@ class TextObjectTest extends TestCase
         ], $object->toArray());
     }
 
-    /** @test */
-    public function it_cannot_indicate_that_auto_conversion_into_clickable_anchors_should_be_skipped_when_using_plaintext(): void
+    public function test_it_cannot_indicate_that_auto_conversion_into_clickable_anchors_should_be_skipped_when_using_plaintext(): void
     {
         $object = new TextObject('A message *with some bold text* and _some italicized text_.');
         $object->verbatim();

@@ -7,8 +7,7 @@ use Illuminate\Tests\Notifications\Slack\TestCase;
 
 class ConfirmObjectTest extends TestCase
 {
-    /** @test */
-    public function it_is_arrayable(): void
+    public function test_it_is_arrayable(): void
     {
         $object = new ConfirmObject();
 
@@ -32,8 +31,7 @@ class ConfirmObjectTest extends TestCase
         ], $object->toArray());
     }
 
-    /** @test */
-    public function the_title_field_is_customizable(): void
+    public function test_the_title_field_is_customizable(): void
     {
         $object = new ConfirmObject();
         $object->title('This is a custom title.');
@@ -58,8 +56,7 @@ class ConfirmObjectTest extends TestCase
         ], $object->toArray());
     }
 
-    /** @test */
-    public function the_title_gets_truncated_when_it_exceeds_100_characters(): void
+    public function test_the_title_gets_truncated_when_it_exceeds_100_characters(): void
     {
         $object = new ConfirmObject();
         $object->title(str_repeat('a', 101));
@@ -84,8 +81,7 @@ class ConfirmObjectTest extends TestCase
         ], $object->toArray());
     }
 
-    /** @test */
-    public function the_text_field_is_customizable(): void
+    public function test_the_text_field_is_customizable(): void
     {
         $object = new ConfirmObject();
         $object->text('This is some custom text.');
@@ -110,8 +106,7 @@ class ConfirmObjectTest extends TestCase
         ], $object->toArray());
     }
 
-    /** @test */
-    public function the_text_gets_truncated_when_it_exceeds_300_characters(): void
+    public function test_the_text_gets_truncated_when_it_exceeds_300_characters(): void
     {
         $objectA = new ConfirmObject(str_repeat('a', 301));
 
@@ -157,8 +152,7 @@ class ConfirmObjectTest extends TestCase
         ], $objectB->toArray());
     }
 
-    /** @test */
-    public function the_confirm_field_is_customizable(): void
+    public function test_the_confirm_field_is_customizable(): void
     {
         $object = new ConfirmObject();
         $object->confirm('Custom confirmation button.');
@@ -183,8 +177,7 @@ class ConfirmObjectTest extends TestCase
         ], $object->toArray());
     }
 
-    /** @test */
-    public function the_confirm_field_is_gets_truncated_after_30_characters(): void
+    public function test_the_confirm_field_is_gets_truncated_after_30_characters(): void
     {
         $object = new ConfirmObject();
         $object->confirm(str_repeat('a', 31));
@@ -209,8 +202,7 @@ class ConfirmObjectTest extends TestCase
         ], $object->toArray());
     }
 
-    /** @test */
-    public function the_color_scheme_can_be_set_to_danger(): void
+    public function test_the_color_scheme_can_be_set_to_danger(): void
     {
         $object = new ConfirmObject();
         $object->danger();
@@ -236,8 +228,7 @@ class ConfirmObjectTest extends TestCase
         ], $object->toArray());
     }
 
-    /** @test */
-    public function the_deny_field_is_customizable(): void
+    public function test_the_deny_field_is_customizable(): void
     {
         $object = new ConfirmObject();
         $object->deny('Custom deny button.');
@@ -262,8 +253,7 @@ class ConfirmObjectTest extends TestCase
         ], $object->toArray());
     }
 
-    /** @test */
-    public function the_deny_field_is_gets_truncated_after_30_characters(): void
+    public function test_the_deny_field_is_gets_truncated_after_30_characters(): void
     {
         $object = new ConfirmObject();
         $object->deny(str_repeat('a', 31));

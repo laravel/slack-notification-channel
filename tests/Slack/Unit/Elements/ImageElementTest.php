@@ -8,8 +8,7 @@ use LogicException;
 
 class ImageElementTest extends TestCase
 {
-    /** @test */
-    public function it_is_arrayable(): void
+    public function test_it_is_arrayable(): void
     {
         $element = new ImageElement('http://placekitten.com/700/500', 'Multiple cute kittens');
 
@@ -20,8 +19,7 @@ class ImageElementTest extends TestCase
         ], $element->toArray());
     }
 
-    /** @test */
-    public function the_alt_text_is_required(): void
+    public function test_the_alt_text_is_required(): void
     {
         $this->expectException(LogicException::class);
         $this->expectExceptionMessage('Alt text is required for an image element.');
@@ -31,8 +29,7 @@ class ImageElementTest extends TestCase
         $element->toArray();
     }
 
-    /** @test */
-    public function the_alt_text_is_optional_during_object_instantiation(): void
+    public function test_the_alt_text_is_optional_during_object_instantiation(): void
     {
         $element = new ImageElement('http://placekitten.com/700/500');
         $element->alt('Some alt text');

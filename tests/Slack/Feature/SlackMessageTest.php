@@ -43,8 +43,7 @@ class SlackMessageTest extends TestCase
         });
     }
 
-    /** @test */
-    public function it_throws_an_exception_when_no_text_or_block_was_provided(): void
+    public function test_it_throws_an_exception_when_no_text_or_block_was_provided(): void
     {
         $this->expectException(LogicException::class);
         $this->expectExceptionMessage('Slack messages must contain at least a text message or block.');
@@ -54,8 +53,7 @@ class SlackMessageTest extends TestCase
         });
     }
 
-    /** @test */
-    public function it_throws_an_exception_when_too_many_blocks_are_defined(): void
+    public function test_it_throws_an_exception_when_too_many_blocks_are_defined(): void
     {
         $this->expectException(LogicException::class);
         $this->expectExceptionMessage('Slack messages can only contain up to 50 blocks.');
@@ -67,8 +65,7 @@ class SlackMessageTest extends TestCase
         });
     }
 
-    /** @test */
-    public function it_sends_a_very_basic_message(): void
+    public function test_it_sends_a_very_basic_message(): void
     {
         $this->sendNotification(function (SlackMessage $message) {
             $message->text('This is a simple Web API text message. See https://api.slack.com/reference/messaging/payload for more information.');
@@ -78,8 +75,7 @@ class SlackMessageTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_fails_to_send_a_message_when_the_slack_app_is_not_configured_correctly(): void
+    public function test_it_fails_to_send_a_message_when_the_slack_app_is_not_configured_correctly(): void
     {
         $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage('Slack API call failed with error [invalid_auth].');
@@ -94,8 +90,7 @@ class SlackMessageTest extends TestCase
         );
     }
 
-    /** @test */
-    public function it_can_set_the_default_channel_for_the_message(): void
+    public function test_it_can_set_the_default_channel_for_the_message(): void
     {
         $this->sendNotification(function (SlackMessage $message) {
             $message->text('See https://api.slack.com/methods/chat.postMessage for more information.');
@@ -106,8 +101,7 @@ class SlackMessageTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_can_use_an_emoji_as_the_icon_for_the_message(): void
+    public function test_it_can_use_an_emoji_as_the_icon_for_the_message(): void
     {
         $this->sendNotification(function (SlackMessage $message) {
             $message->text('See https://api.slack.com/methods/chat.postMessage for more information.');
@@ -119,8 +113,7 @@ class SlackMessageTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_can_use_an_image_as_the_icon_for_the_message(): void
+    public function test_it_can_use_an_image_as_the_icon_for_the_message(): void
     {
         $this->sendNotification(function (SlackMessage $message) {
             $message->text('See https://api.slack.com/methods/chat.postMessage for more information.');
@@ -132,8 +125,7 @@ class SlackMessageTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_can_include_metadata(): void
+    public function test_it_can_include_metadata(): void
     {
         $this->sendNotification(function (SlackMessage $message) {
             $message->text('See https://api.slack.com/methods/chat.postMessage for more information.');
@@ -148,8 +140,7 @@ class SlackMessageTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_can_disable_slack_markdown_parsing(): void
+    public function test_it_can_disable_slack_markdown_parsing(): void
     {
         $this->sendNotification(function (SlackMessage $message) {
             $message->text('See https://api.slack.com/methods/chat.postMessage for more information.');
@@ -161,8 +152,7 @@ class SlackMessageTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_can_unfurl_links(): void
+    public function test_it_can_unfurl_links(): void
     {
         $this->sendNotification(function (SlackMessage $message) {
             $message->text('See https://api.slack.com/methods/chat.postMessage for more information.');
@@ -174,8 +164,7 @@ class SlackMessageTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_can_unfurl_media(): void
+    public function test_it_can_unfurl_media(): void
     {
         $this->sendNotification(function (SlackMessage $message) {
             $message->text('See https://api.slack.com/methods/chat.postMessage for more information.');
@@ -187,8 +176,7 @@ class SlackMessageTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_can_reply_as_thread(): void
+    public function test_it_can_reply_as_thread(): void
     {
         $this->sendNotification(function (SlackMessage $message) {
             $message->text('See https://api.slack.com/methods/chat.postMessage for more information.');
@@ -200,8 +188,7 @@ class SlackMessageTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_can_send_threaded_reply_as_broadcast_reference(): void
+    public function test_it_can_send_threaded_reply_as_broadcast_reference(): void
     {
         $this->sendNotification(function (SlackMessage $message) {
             $message->text('See https://api.slack.com/methods/chat.postMessage for more information.');
@@ -213,8 +200,7 @@ class SlackMessageTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_can_set_the_bot_user_name(): void
+    public function test_it_can_set_the_bot_user_name(): void
     {
         $this->sendNotification(function (SlackMessage $message) {
             $message->text('See https://api.slack.com/methods/chat.postMessage for more information.');
@@ -226,8 +212,7 @@ class SlackMessageTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_contains_both_blocks_and_a_fallback_text_used_in_notifications_only(): void
+    public function test_it_contains_both_blocks_and_a_fallback_text_used_in_notifications_only(): void
     {
         $this->sendNotification(function (SlackMessage $message) {
             $message->text('This is now a fallback text used in notifications. See https://api.slack.com/methods/chat.postMessage for more information.');
@@ -243,8 +228,7 @@ class SlackMessageTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_can_contain_action_blocks(): void
+    public function test_it_can_contain_action_blocks(): void
     {
         $this->sendNotification(function (SlackMessage $message) {
             $message->actionsBlock(function (ActionsBlock $actions) {
@@ -271,8 +255,7 @@ class SlackMessageTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_can_contain_context_blocks(): void
+    public function test_it_can_contain_context_blocks(): void
     {
         $this->sendNotification(function (SlackMessage $message) {
             $message->contextBlock(function (ContextBlock $context) {
@@ -295,8 +278,7 @@ class SlackMessageTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_can_contain_divider_blocks(): void
+    public function test_it_can_contain_divider_blocks(): void
     {
         $this->sendNotification(function (SlackMessage $message) {
             $message->dividerBlock();
@@ -310,8 +292,7 @@ class SlackMessageTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_can_contain_header_blocks(): void
+    public function test_it_can_contain_header_blocks(): void
     {
         $this->sendNotification(function (SlackMessage $message) {
             $message->headerBlock('Budget Performance');
@@ -329,8 +310,7 @@ class SlackMessageTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_can_contain_image_blocks(): void
+    public function test_it_can_contain_image_blocks(): void
     {
         $this->sendNotification(function (SlackMessage $message) {
             $message->imageBlock('http://placekitten.com/500/500', function (ImageBlock $imageBlock) {
@@ -348,8 +328,7 @@ class SlackMessageTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_can_contain_section_blocks(): void
+    public function test_it_can_contain_section_blocks(): void
     {
         $this->sendNotification(function (SlackMessage $message) {
             $message->sectionBlock(function (SectionBlock $sectionBlock) {
@@ -369,8 +348,7 @@ class SlackMessageTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_can_add_blocks_conditionally(): void
+    public function test_it_can_add_blocks_conditionally(): void
     {
         $this->sendNotification(function (SlackMessage $message) {
             $message->when(true, function (SlackMessage $message) {
@@ -411,8 +389,7 @@ class SlackMessageTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_submits_blocks_in_the_order_they_were_defined(): void
+    public function test_it_submits_blocks_in_the_order_they_were_defined(): void
     {
         $this->sendNotification(function (SlackMessage $message) {
             $message->headerBlock('Budget Performance');
@@ -448,8 +425,7 @@ class SlackMessageTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_can_use_copied_block_kit_template()
+    public function test_it_can_use_copied_block_kit_template()
     {
         $this->sendNotification(function (SlackMessage $message) {
             $message->usingBlockKitTemplate(<<<'JSON'
@@ -519,8 +495,7 @@ class SlackMessageTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_can_combined_block_kit_template_and_block_contract_in_order()
+    public function test_it_can_combined_block_kit_template_and_block_contract_in_order()
     {
         $this->sendNotification(function (SlackMessage $message) {
             $message->usingBlockKitTemplate(<<<'JSON'
@@ -574,8 +549,7 @@ class SlackMessageTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function it_can_return_an_block_kit_builder_url()
+    public function test_it_can_return_an_block_kit_builder_url()
     {
         $message = (new SlackChannelTestNotification(function (SlackMessage $message) {
             $message
