@@ -27,7 +27,7 @@ class PlainTextOnlyTextObject implements ObjectContract
         }
 
         if (strlen($text) > $maxLength) {
-            $text = substr($text, 0, $maxLength - 3).'...';
+            $text = mb_strcut($text, 0, $maxLength - 3, 'UTF-8').'...';
         }
 
         $this->text = $text;
