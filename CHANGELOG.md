@@ -1,6 +1,17 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.8.0...3.x)
+## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.9.0...3.x)
+
+## [v3.9.0](https://github.com/laravel/slack-notification-channel/compare/v3.8.0...v3.9.0) - 2026-06-27
+
+* Pin GitHub Actions to commit SHAs and add Dependabot config by [@joetannenbaum](https://github.com/joetannenbaum) in https://github.com/laravel/slack-notification-channel/pull/110
+* Bump shivammathur/setup-php from 2.37.0 to 2.37.1 in the github-actions group by [@dependabot](https://github.com/dependabot)[bot] in https://github.com/laravel/slack-notification-channel/pull/111
+* Truncate text objects without splitting multibyte characters by [@KentarouTakeda](https://github.com/KentarouTakeda) in https://github.com/laravel/slack-notification-channel/pull/112
+* Add Dependabot cooldown of 5 days by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/slack-notification-channel/pull/113
+* Enable Dependabot auto-merge by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/slack-notification-channel/pull/114
+* Bump actions/checkout from 6.0.2 to 6.0.3 in the github-actions group by [@dependabot](https://github.com/dependabot)[bot] in https://github.com/laravel/slack-notification-channel/pull/115
+* Bump shivammathur/setup-php from 2.37.1 to 2.37.2 in the github-actions group by [@dependabot](https://github.com/dependabot)[bot] in https://github.com/laravel/slack-notification-channel/pull/116
+* Bump actions/checkout from 6.0.3 to 7.0.0 in the github-actions group by [@dependabot](https://github.com/dependabot)[bot] in https://github.com/laravel/slack-notification-channel/pull/117
 
 ## [v3.8.0](https://github.com/laravel/slack-notification-channel/compare/v3.7.0...v3.8.0) - 2026-03-17
 
