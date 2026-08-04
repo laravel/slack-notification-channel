@@ -1,6 +1,11 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.9.0...3.x)
+## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.10.0...3.x)
+
+## [v3.10.0](https://github.com/laravel/slack-notification-channel/compare/v3.9.0...v3.10.0) - 2026-07-24
+
+* allow guzzlehttp/guzzle 8.0 by [@scybulski](https://github.com/scybulski) in https://github.com/laravel/slack-notification-channel/pull/118
+* Bump actions/checkout from 7.0.0 to 7.0.1 in the github-actions group by [@dependabot](https://github.com/dependabot)[bot] in https://github.com/laravel/slack-notification-channel/pull/119
 
 ## [v3.9.0](https://github.com/laravel/slack-notification-channel/compare/v3.8.0...v3.9.0) - 2026-06-27
 
