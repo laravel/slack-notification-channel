@@ -1,6 +1,19 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.10.0...3.x)
+## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.11.0...3.x)
+
+## [v3.11.0](https://github.com/laravel/slack-notification-channel/compare/v3.10.0...v3.11.0) - 2026-10-16
+
+### What's Changed
+
+* Remove security policy in favor of the org-wide default by [@pushpak1300](https://github.com/pushpak1300) in https://github.com/laravel/slack-notification-channel/pull/120
+* Bump shivammathur/setup-php from 2.37.2 to 2.40.0 in the github-actions group by [@dependabot](https://github.com/dependabot)[bot] in https://github.com/laravel/slack-notification-channel/pull/121
+
+### New Contributors
+
+* [@pushpak1300](https://github.com/pushpak1300) made their first contribution in https://github.com/laravel/slack-notification-channel/pull/120
+
+**Full Changelog**: https://github.com/laravel/slack-notification-channel/compare/v3.10.0...v3.11.0
 
 ## [v3.10.0](https://github.com/laravel/slack-notification-channel/compare/v3.9.0...v3.10.0) - 2026-07-24
 
