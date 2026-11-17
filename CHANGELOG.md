@@ -1,6 +1,14 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.11.0...3.x)
+## [Unreleased](https://github.com/laravel/slack-notification-channel/compare/v3.12.0...3.x)
+
+## [v3.12.0](https://github.com/laravel/slack-notification-channel/compare/v3.11.0...v3.12.0) - 2026-11-11
+
+### What's Changed
+
+* Dependency floor bump by [@pushpak1300](https://github.com/pushpak1300) in https://github.com/laravel/slack-notification-channel/pull/122
+
+**Full Changelog**: https://github.com/laravel/slack-notification-channel/compare/v3.11.0...v3.12.0
 
 ## [v3.11.0](https://github.com/laravel/slack-notification-channel/compare/v3.10.0...v3.11.0) - 2026-10-16
 
